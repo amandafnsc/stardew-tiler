@@ -10,6 +10,9 @@ let dirtEntrance = [];
 let dirtDiagonal = [];
 let dirtEdge = [];
 
+let x;
+let y;
+
 function preload() {
   imgGrass = loadImage('assets/grass.png');
   imgDirt = loadImage('assets/dirt.png');
@@ -39,18 +42,25 @@ function setup() {
   background(255);
 
   tilesMap = [
-    [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-    [0, 0, 0, 1, 1, 1, 0, 1, 0, 0],
-    [0, 0, 1, 1, 1, 1, 1, 1, 1, 0],
-    [0, 1, 1, 1, 1, 0, 0, 1, 0, 0],
-    [1, 1, 0, 0, 1, 0, 0, 0, 0, 0],
-    [1, 0, 1, 1, 1, 1, 1, 1, 0, 0],
-    [1, 1, 1, 0, 0, 1, 1, 1, 0, 0],
-    [0, 1, 1, 0, 0, 0, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ];
+}
+
+function draw() {
+  x = mouseX/64;
+  y = mouseY/64;
 
   drawMap();
-  //drawGrid();
+  drawGrid();
+
+  console.log(x, y);
 }
 
 function drawMap() {
@@ -424,5 +434,13 @@ function drawGrid() {
       stroke(0, 20);
       line(i * 64, 0, i * 64, height);
       line(0, j * 64, width, j * 64);
+    }
+}
+
+function mousePressed() {
+  for (let i = 0; i < 10; i++)
+    for (let j = 0; j < 8; j++) {
+      if (floor(x) == i && floor(y) == j)
+      tilesMap[j][i] = 1;
     }
 }
