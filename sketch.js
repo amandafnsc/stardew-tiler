@@ -9,6 +9,8 @@ let dirtTD = [];
 let dirtEntrance = [];
 let dirtDiagonal = [];
 let dirtEdge = [];
+let dirtNewWay = [];
+let dirtTwoExit = [];
 
 let x;
 let y;
@@ -33,6 +35,11 @@ function preload() {
     dirtTD[i] = loadImage('assets/dirtTD' + [i] + '.png');
     dirtEntrance[i] = loadImage('assets/dirtEntrance' + [i] + '.png');
     dirtEdge[i] = loadImage('assets/dirtEdge' + [i] + '.png');
+    dirtTwoExit[i] = loadImage('assets/dirtTwoExit' + [i] + '.png');
+  }
+
+  for (let i = 1; i < 9; i++) {
+    dirtNewWay[i] = loadImage('assets/dirtNewWay' + [i] + '.png');
   }
 }
 
