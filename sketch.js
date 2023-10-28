@@ -1,3 +1,5 @@
+let tilesMap = [];
+
 let imgGrass, imgDirt, imgDirtDot, imgDirtMiddle;
 
 let dirtOneD = [];
@@ -11,6 +13,8 @@ let dirtDiagonal = [];
 let dirtEdge = [];
 let dirtNewWay = [];
 let dirtTwoExit = [];
+
+let islandExit = [];
 
 let x;
 let y;
@@ -40,23 +44,26 @@ function preload() {
 
   for (let i = 1; i < 9; i++) {
     dirtNewWay[i] = loadImage('assets/dirtNewWay' + [i] + '.png');
+    islandExit[i] = loadImage('assets/islandExit' + [i] + '.png');
   }
 }
 
 function setup() {
-  createCanvas(640, 512);
+  createCanvas(1280, 640);
 
   background(255);
 
   tilesMap = [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+    [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
   ];
 }
 
@@ -71,8 +78,8 @@ function draw() {
 }
 
 function drawGrid() {
-  for (let i = 0; i < 10; i++)
-    for (let j = 0; j < 8; j++) {
+  for (let i = 0; i < 20; i++)
+    for (let j = 0; j < 10; j++) {
       stroke(0, 20);
       line(i * 64, 0, i * 64, height);
       line(0, j * 64, width, j * 64);
@@ -80,9 +87,9 @@ function drawGrid() {
 }
 
 function mousePressed() {
-  for (let i = 0; i < 10; i++)
-    for (let j = 0; j < 8; j++) {
-      if (floor(x) == i && floor(y) == j)
+  for (let i = 0; i < 20; i++)
+    for (let j = 0; j < 10; j++) {
+      if (floor(x) == i && floor(y) == j && tilesMap[j][i] == 0)
       tilesMap[j][i] = 1;
     }
 }

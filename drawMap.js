@@ -17,21 +17,21 @@ function drawMap() {
         hasDirtOnDiagonalDR;
 
 
-    for (let i = 0; i < 10; i++)
-        for (let j = 0; j < 8; j++) {
+    for (let i = 0; i < 20; i++)
+        for (let j = 0; j < 10; j++) {
 
             if (j > 0) hasDirtOnTop = tilesMap[j - 1][i] == 1;
-            if (j < 7) hasDirtOnBottom = tilesMap[j + 1][i] == 1;
+            if (j < 9) hasDirtOnBottom = tilesMap[j + 1][i] == 1;
             if (i > 0) hasDirtOnLeft = tilesMap[j][i - 1] == 1;
-            if (i < 9) hasDirtOnRight = tilesMap[j][i + 1] == 1;
+            if (i < 19) hasDirtOnRight = tilesMap[j][i + 1] == 1;
 
             if (j > 0 && i > 0)
                 hasDirtOnDiagonalTL = tilesMap[j - 1][i - 1] == 1;
-            if (j > 0 && i < 9)
+            if (j > 0 && i < 19)
                 hasDirtOnDiagonalTR = tilesMap[j - 1][i + 1] == 1;
-            if (j < 7 && i > 0)
+            if (j < 9 && i > 0)
                 hasDirtOnDiagonalDL = tilesMap[j + 1][i - 1] == 1;
-            if (j < 7 && i < 9)
+            if (j < 9 && i < 19)
                 hasDirtOnDiagonalDR = tilesMap[j + 1][i + 1] == 1;
 
             if (tilesMap[j][i] == 1) {
@@ -416,6 +416,33 @@ function drawMap() {
                 else image(imgDirtDot, i * 64, j * 64);
             }
 
-            else image(imgGrass, i * 64, j * 64);
+            if (tilesMap[j][i] == 2) {
+                if (j == 0 && i == 0)
+                image(islandExit[1], i * 64, j * 64);
+
+                else if (j != 9 && i == 0)
+                image(islandExit[2], i * 64, j * 64);
+
+                else if (j == 9 && i == 0)
+                image(islandExit[3], i * 64, j * 64);
+
+                else if (j == 9 && i != 19)
+                image(islandExit[4], i * 64, j * 64);
+
+                else if (j == 0 && i != 19)
+                image(islandExit[5], i * 64, j * 64);
+
+                else if (j == 0 && i == 19)
+                image(islandExit[6], i * 64, j * 64);
+
+                else if (j != 9 && i == 19)
+                image(islandExit[7], i * 64, j * 64);
+
+                else if (j == 9 && i == 19)
+                image(islandExit[8], i * 64, j * 64);
+            }
+
+            if (tilesMap[j][i] == 0)
+            image(imgGrass, i * 64, j * 64);
         }
 }
