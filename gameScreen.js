@@ -3,7 +3,8 @@ let imgBackButton, imgCameraButton, imgInventory, imgSelected;
 let isGrassSelected, isAxSelected, isHoeSelected, isSeedSelected;
 
 function gameScreen() {
-    drawMap();
+    drawTilesMap();
+    drawTreesMap();
     
     image(imgBackButton, 16, 16);
     image(imgCameraButton, 1204, 16);

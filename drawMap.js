@@ -16,7 +16,38 @@ let dirtTwoExit = [];
 
 let islandExit = [];
 
-function drawMap() {
+let tree = [];
+let treeTime = [];
+
+function drawTreesMap() {
+    for (let i = 0; i < 20; i++)
+        for (let j = 0; j < 10; j++) {
+            if (treesMap[j][i] == 1) image(tree[1], i * 64 + 16, j * 64 + 16);
+            if (treesMap[j][i] == 2) image(tree[2], i * 64 + 16, j * 64 + 16);
+            if (treesMap[j][i] == 3) image(tree[3], i * 64 + 16, j * 64 + 16);
+            if (treesMap[j][i] == 4) image(tree[4], i * 64 + 16, j * 64 - 16);
+            if (treesMap[j][i] == 5) image(tree[5], i * 64 - 15, j * 64 - 132);
+            if (treesMap[j][i] == 6) image(tree[6], i * 64 + 16, j * 64 + 8);
+        }
+}
+
+function growsTree() {
+    treeTime.push(0);
+    for (let i = 0; i < 20; i++)
+        for (let j = 0; j < 10; j++)
+            for (let t = 0; t < treeTime.length; t++) {
+                treeTime[t]++;
+                if (treeTime >= 3) treesMap[j][i] = 2;
+                if (treeTime >= 6) treesMap[j][i] = 3;
+                if (treeTime >= 9) treesMap[j][i] = 4;
+                if (treeTime >= 12) {
+                    treesMap[j][i] = 5;
+                    treeTime.splice(t, 1);
+                }
+            }
+}
+
+function drawTilesMap() {
     image(imgGameBackground, 0, 0);
 
     let hasDirtOnTop;
@@ -437,31 +468,31 @@ function drawMap() {
 
             if (tilesMap[j][i] == 2) {
                 if (j == 0 && i == 0)
-                image(islandExit[1], i * 64, j * 64);
+                    image(islandExit[1], i * 64, j * 64);
 
                 else if (j != 9 && i == 0)
-                image(islandExit[2], i * 64, j * 64);
+                    image(islandExit[2], i * 64, j * 64);
 
                 else if (j == 9 && i == 0)
-                image(islandExit[3], i * 64, j * 64);
+                    image(islandExit[3], i * 64, j * 64);
 
                 else if (j == 9 && i != 19)
-                image(islandExit[4], i * 64, j * 64);
+                    image(islandExit[4], i * 64, j * 64);
 
                 else if (j == 0 && i != 19)
-                image(islandExit[5], i * 64, j * 64);
+                    image(islandExit[5], i * 64, j * 64);
 
                 else if (j == 0 && i == 19)
-                image(islandExit[6], i * 64, j * 64);
+                    image(islandExit[6], i * 64, j * 64);
 
                 else if (j != 9 && i == 19)
-                image(islandExit[7], i * 64, j * 64);
+                    image(islandExit[7], i * 64, j * 64);
 
                 else if (j == 9 && i == 19)
-                image(islandExit[8], i * 64, j * 64);
+                    image(islandExit[8], i * 64, j * 64);
             }
 
             if (tilesMap[j][i] == 0)
-            image(imgGrass, i * 64, j * 64);
+                image(imgGrass, i * 64, j * 64);
         }
 }

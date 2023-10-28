@@ -1,6 +1,9 @@
 let isTheGameOn = false;
 
+let isTheTreeGrowing = false;
+
 let tilesMap = [];
+let treesMap = [];
 
 let x;
 let y;
@@ -45,6 +48,10 @@ function preload() {
     dirtNewWay[i] = loadImage('assets/dirtNewWay' + [i] + '.png');
     islandExit[i] = loadImage('assets/islandExit' + [i] + '.png');
   }
+
+  for (let i = 1; i < 7; i++) {
+    tree[i] = loadImage('assets/tree' + [i] + '.png');
+  }
 }
 
 function setup() {
@@ -61,6 +68,8 @@ function draw() {
   if (isTheGameOn) gameScreen();
 
   else introScreen();
+
+  if (isTheTreeGrowing) growsTree();
 
   //drawGrid();
 }
@@ -110,10 +119,21 @@ function mousePressed() {
 
     for (let i = 0; i < 20; i++)
       for (let j = 0; j < 10; j++) {
-        if (floor(x) == i && floor(y) == j && tilesMap[j][i] == 0 && isHoeSelected)
+        if (floor(x) == i && floor(y) == j && tilesMap[j][i] == 0 && isHoeSelected && treesMap[j][i] == 0)
           tilesMap[j][i] = 1;
-        if (floor(x) == i && floor(y) == j && tilesMap[j][i] == 1 && isGrassSelected)
+
+        if (floor(x) == i && floor(y) == j && tilesMap[j][i] == 1 && isGrassSelected  && treesMap[j][i] == 0)
           tilesMap[j][i] = 0;
+
+        if (floor(x) == i && floor(y) == j && tilesMap[j][i] == 1 && isSeedSelected) {
+          treesMap[j][i] = 1;
+          isTheTreeGrowing = true;
+        }
+
+        if (floor(x) == i && floor(y) == j && isAxSelected) {
+          if (treesMap[j][i] <= 4 || tressMap[j][i] == 6) treesMap[j][i] = 0;
+          if (tressMap[j][i] == 5) tressMap[j][i] = 6;
+        }
       }
   }
 
@@ -142,6 +162,19 @@ function resetTiles() {
     [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
     [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
     [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+  ];
+
+  treesMap = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ];
 }
 
