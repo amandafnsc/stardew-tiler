@@ -15,6 +15,9 @@ function preload() {
 
   imgGameBackground = loadImage('assets/gameBackground.png');
   imgBackButton = loadImage('assets/backButton.png');
+  imgCameraButton = loadImage('assets/cameraButton.png');
+  imgInventory = loadImage('assets/inventory.png');
+  imgSelected = loadImage('assets/selected.png');
 
   imgGrass = loadImage('assets/grass.png');
   imgDirt = loadImage('assets/dirt.png');
@@ -48,17 +51,18 @@ function setup() {
   createCanvas(1280, 640);
 
   resetTiles();
+  resetInventorySelected();
 }
 
 function draw() {
-  x = mouseX/64;
-  y = mouseY/64;
+  x = mouseX / 64;
+  y = mouseY / 64;
 
   if (isTheGameOn) gameScreen();
 
   else introScreen();
 
-  drawGrid();
+  //drawGrid();
 }
 
 function drawGrid() {
@@ -76,15 +80,46 @@ function mousePressed() {
       isTheGameOn = false;
     }
 
-    for (let i = 0; i < 20; i++)
-    for (let j = 0; j < 10; j++) {
-      if (floor(x) == i && floor(y) == j && tilesMap[j][i] == 0)
-      tilesMap[j][i] = 1;
+    if (mouseX > 512 && mouseX < 576 && mouseY > 528 && mouseY < 592) {
+      isGrassSelected = true;
+      isAxSelected = false;
+      isHoeSelected = false;
+      isSeedSelected = false;
     }
+
+    if (mouseX > 576 && mouseX < 640 && mouseY > 528 && mouseY < 592) {
+      isGrassSelected = false;
+      isAxSelected = true;
+      isHoeSelected = false;
+      isSeedSelected = false;
+    }
+
+    if (mouseX > 640 && mouseX < 704 && mouseY > 528 && mouseY < 592) {
+      isGrassSelected = false;
+      isAxSelected = false;
+      isHoeSelected = true;
+      isSeedSelected = false;
+    }
+
+    if (mouseX > 704 && mouseX < 768 && mouseY > 528 && mouseY < 592) {
+      isGrassSelected = false;
+      isAxSelected = false;
+      isHoeSelected = false;
+      isSeedSelected = true;
+    }
+
+    for (let i = 0; i < 20; i++)
+      for (let j = 0; j < 10; j++) {
+        if (floor(x) == i && floor(y) == j && tilesMap[j][i] == 0 && isHoeSelected)
+          tilesMap[j][i] = 1;
+        if (floor(x) == i && floor(y) == j && tilesMap[j][i] == 1 && isGrassSelected)
+          tilesMap[j][i] = 0;
+      }
   }
-  
+
   else {
     if (mouseX > 476 && mouseX < 624 && mouseY > 433 && mouseY < 549) {
+      resetInventorySelected();
       resetTiles();
       isTheGameOn = true;
     }
@@ -108,4 +143,11 @@ function resetTiles() {
     [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
     [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
   ];
+}
+
+function resetInventorySelected() {
+  isGrassSelected = false;
+  isAxSelected = false;
+  isHoeSelected = true;
+  isSeedSelected = false;
 }
