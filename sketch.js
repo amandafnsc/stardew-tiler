@@ -1,25 +1,21 @@
+let isTheGameOn = false;
+
 let tilesMap = [];
-
-let imgGrass, imgDirt, imgDirtDot, imgDirtMiddle;
-
-let dirtOneD = [];
-let dirtTwoD = [];
-let dirtLD = [];
-let dirtCorner = [];
-let dirtSide = [];
-let dirtTD = [];
-let dirtEntrance = [];
-let dirtDiagonal = [];
-let dirtEdge = [];
-let dirtNewWay = [];
-let dirtTwoExit = [];
-
-let islandExit = [];
 
 let x;
 let y;
 
 function preload() {
+  imgIntroBackground = loadImage('assets/introBackground.png');
+  imgIntroTitle = loadImage('assets/introTitle.png');
+  imgNewButton = loadImage('assets/newButton.png');
+  imgLoadButton = loadImage('assets/loadButton.png');
+  imgNewButton2 = loadImage('assets/newButton2.png');
+  imgLoadButton2 = loadImage('assets/loadButton2.png');
+
+  imgGameBackground = loadImage('assets/gameBackground.png');
+  imgBackButton = loadImage('assets/backButton.png');
+
   imgGrass = loadImage('assets/grass.png');
   imgDirt = loadImage('assets/dirt.png');
   imgDirtDot = loadImage('assets/dirtDot.png');
@@ -51,30 +47,18 @@ function preload() {
 function setup() {
   createCanvas(1280, 640);
 
-  background(255);
-
-  tilesMap = [
-    [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
-    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
-    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
-    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
-    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
-    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
-    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
-    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
-    [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-  ];
+  resetTiles();
 }
 
 function draw() {
   x = mouseX/64;
   y = mouseY/64;
 
-  drawMap();
-  drawGrid();
+  if (isTheGameOn) gameScreen();
 
-  console.log(x, y);
+  else introScreen();
+
+  drawGrid();
 }
 
 function drawGrid() {
@@ -87,9 +71,41 @@ function drawGrid() {
 }
 
 function mousePressed() {
-  for (let i = 0; i < 20; i++)
+  if (isTheGameOn) {
+    if (mouseX > 16 && mouseX < 126 && mouseY > 16 && mouseY < 66) {
+      isTheGameOn = false;
+    }
+
+    for (let i = 0; i < 20; i++)
     for (let j = 0; j < 10; j++) {
       if (floor(x) == i && floor(y) == j && tilesMap[j][i] == 0)
       tilesMap[j][i] = 1;
     }
+  }
+  
+  else {
+    if (mouseX > 476 && mouseX < 624 && mouseY > 433 && mouseY < 549) {
+      resetTiles();
+      isTheGameOn = true;
+    }
+
+    if (mouseX > 656 && mouseX < 804 && mouseY > 433 && mouseY < 549) {
+      isTheGameOn = true;
+    }
+  }
+}
+
+function resetTiles() {
+  tilesMap = [
+    [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+    [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+    [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+  ];
 }

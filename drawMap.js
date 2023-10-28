@@ -1,4 +1,23 @@
+let gameBackground;
+
+let imgGrass, imgDirt, imgDirtDot, imgDirtMiddle;
+
+let dirtOneD = [];
+let dirtTwoD = [];
+let dirtLD = [];
+let dirtCorner = [];
+let dirtSide = [];
+let dirtTD = [];
+let dirtEntrance = [];
+let dirtDiagonal = [];
+let dirtEdge = [];
+let dirtNewWay = [];
+let dirtTwoExit = [];
+
+let islandExit = [];
+
 function drawMap() {
+    image(imgGameBackground, 0, 0);
 
     let hasDirtOnTop;
     let hasDirtOnBottom;
