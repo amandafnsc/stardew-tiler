@@ -17,7 +17,6 @@ let dirtTwoExit = [];
 let islandExit = [];
 
 let tree = [];
-let treeTime = [];
 
 function drawTreesMap() {
     for (let i = 0; i < 20; i++)
@@ -27,24 +26,39 @@ function drawTreesMap() {
             if (treesMap[j][i] == 3) image(tree[3], i * 64 + 16, j * 64 + 16);
             if (treesMap[j][i] == 4) image(tree[4], i * 64 + 16, j * 64 - 16);
             if (treesMap[j][i] == 5) image(tree[5], i * 64 - 15, j * 64 - 132);
-            if (treesMap[j][i] == 6) image(tree[6], i * 64 + 16, j * 64 + 8);
+            if (treesMap[j][i] == 6) image(tree[6], i * 64 + 16.5, j * 64 + 8);
         }
 }
 
-function growsTree() {
-    treeTime.push(0);
+function drawTreeGrowth() {
     for (let i = 0; i < 20; i++)
-        for (let j = 0; j < 10; j++)
-            for (let t = 0; t < treeTime.length; t++) {
-                treeTime[t]++;
-                if (treeTime >= 3) treesMap[j][i] = 2;
-                if (treeTime >= 6) treesMap[j][i] = 3;
-                if (treeTime >= 9) treesMap[j][i] = 4;
-                if (treeTime >= 12) {
-                    treesMap[j][i] = 5;
-                    treeTime.splice(t, 1);
+        for (let j = 0; j < 10; j++) {
+            if (treesMap[j][i] == 1) {
+                treesTime[j][i]++;
+                if (treesTime[j][i] >= 30) {
+                    treesMap[j][i]++;
                 }
             }
+            if (treesMap[j][i] == 2) {
+                treesTime[j][i]++;
+                if (treesTime[j][i] >= 60) {
+                    treesMap[j][i]++;
+                }
+            }
+            if (treesMap[j][i] == 3) {
+                treesTime[j][i]++;
+                if (treesTime[j][i] >= 90) {
+                    treesMap[j][i]++;
+                }
+            }
+            if (treesMap[j][i] == 4) {
+                treesTime[j][i]++;
+                if (treesTime[j][i] >= 120) {
+                    tilesMap[j][i] = 0;
+                    treesMap[j][i]++;
+                }
+            }
+        }
 }
 
 function drawTilesMap() {

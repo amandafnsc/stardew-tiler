@@ -1,12 +1,13 @@
 let isTheGameOn = false;
 
-let isTheTreeGrowing = false;
-
 let tilesMap = [];
 let treesMap = [];
+let treesTime = [];
+
 
 let x;
 let y;
+let t;
 
 function preload() {
   imgIntroBackground = loadImage('assets/introBackground.png');
@@ -65,13 +66,12 @@ function draw() {
   x = mouseX / 64;
   y = mouseY / 64;
 
-  if (isTheGameOn) gameScreen();
+  if (isTheGameOn) {
+    gameScreen();
+    drawTreeGrowth();
+  }
 
   else introScreen();
-
-  if (isTheTreeGrowing) growsTree();
-
-  //drawGrid();
 }
 
 function drawGrid() {
@@ -122,17 +122,18 @@ function mousePressed() {
         if (floor(x) == i && floor(y) == j && tilesMap[j][i] == 0 && isHoeSelected && treesMap[j][i] == 0)
           tilesMap[j][i] = 1;
 
-        if (floor(x) == i && floor(y) == j && tilesMap[j][i] == 1 && isGrassSelected  && treesMap[j][i] == 0)
+        if (floor(x) == i && floor(y) == j && tilesMap[j][i] == 1 && isGrassSelected && treesMap[j][i] == 0)
           tilesMap[j][i] = 0;
 
-        if (floor(x) == i && floor(y) == j && tilesMap[j][i] == 1 && isSeedSelected) {
+        if (floor(x) == i && floor(y) == j && tilesMap[j][i] == 1 && isSeedSelected)
           treesMap[j][i] = 1;
-          isTheTreeGrowing = true;
-        }
 
         if (floor(x) == i && floor(y) == j && isAxSelected) {
-          if (treesMap[j][i] <= 4 || tressMap[j][i] == 6) treesMap[j][i] = 0;
-          if (tressMap[j][i] == 5) tressMap[j][i] = 6;
+          if (treesMap[j][i] <= 4 || treesMap[j][i] == 6) {
+            treesMap[j][i] = 0;
+            treesTime[j][i] = 0;
+          }
+          if (treesMap[j][i] == 5) treesMap[j][i] = 6;
         }
       }
   }
@@ -165,6 +166,19 @@ function resetTiles() {
   ];
 
   treesMap = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  ];
+
+  treesTime = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
