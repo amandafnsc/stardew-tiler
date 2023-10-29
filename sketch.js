@@ -74,6 +74,8 @@ function draw() {
   }
 
   else introScreen();
+
+  takeAPicture();
 }
 
 function takeAPicture() {
@@ -144,7 +146,7 @@ function mousePressed() {
         if (floor(x) == i && floor(y) == j && tilesMap[j][i] == 1 && isGrassSelected && treesMap[j][i] == 0)
           tilesMap[j][i] = 0;
 
-        if (floor(x) == i && floor(y) == j && tilesMap[j][i] == 1 && isSeedSelected)
+        if (floor(x) == i && floor(y) == j && tilesMap[j][i] == 1 && isSeedSelected && treesMap[j][i] == 0)
           treesMap[j][i] = 1;
 
         if (floor(x) == i && floor(y) == j && isAxSelected) {
