@@ -1,9 +1,11 @@
 let isTheGameOn = false;
+let isTakingAPicture = false;
 
 let tilesMap = [];
 let treesMap = [];
 let treesTime = [];
 
+let pictureTime = 0;
 
 let x;
 let y;
@@ -74,6 +76,18 @@ function draw() {
   else introScreen();
 }
 
+function takeAPicture() {
+  if (isTakingAPicture) {
+    pictureTime++;
+    if (pictureTime >= 60) {
+      drawTilesMap();
+      drawTreesMap();
+      isTakingAPicture = false;
+    }
+  }
+  if (!isTakingAPicture) pictureTime = 0;
+}
+
 function drawGrid() {
   for (let i = 0; i < 20; i++)
     for (let j = 0; j < 10; j++) {
@@ -85,6 +99,11 @@ function drawGrid() {
 
 function mousePressed() {
   if (isTheGameOn) {
+    if (mouseX > 1204 && mouseX < 1264 && mouseY > 16 && mouseY < 66) {
+      isTakingAPicture = true;
+      saveFrames('my-map', 'png', 1, 1);
+    }
+
     if (mouseX > 16 && mouseX < 126 && mouseY > 16 && mouseY < 66) {
       isTheGameOn = false;
     }
