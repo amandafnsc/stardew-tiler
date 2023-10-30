@@ -30,37 +30,6 @@ function drawTreesMap() {
         }
 }
 
-function drawTreeGrowth() {
-    for (let i = 0; i < 20; i++)
-        for (let j = 0; j < 10; j++) {
-            if (treesMap[j][i] == 1) {
-                treesTime[j][i]++;
-                if (treesTime[j][i] >= 30) {
-                    treesMap[j][i]++;
-                }
-            }
-            if (treesMap[j][i] == 2) {
-                treesTime[j][i]++;
-                if (treesTime[j][i] >= 60) {
-                    treesMap[j][i]++;
-                }
-            }
-            if (treesMap[j][i] == 3) {
-                treesTime[j][i]++;
-                if (treesTime[j][i] >= 90) {
-                    treesMap[j][i]++;
-                }
-            }
-            if (treesMap[j][i] == 4) {
-                treesTime[j][i]++;
-                if (treesTime[j][i] >= 120) {
-                    tilesMap[j][i] = 0;
-                    treesMap[j][i]++;
-                }
-            }
-        }
-}
-
 function drawTilesMap() {
     image(imgGameBackground, 0, 0);
 

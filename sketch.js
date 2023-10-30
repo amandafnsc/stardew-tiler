@@ -5,8 +5,6 @@ let tilesMap = [];
 let treesMap = [];
 let treesTime = [];
 
-let pictureTime = 0;
-
 let x;
 let y;
 let t;
@@ -70,33 +68,9 @@ function draw() {
 
   if (isTheGameOn) {
     gameScreen();
-    drawTreeGrowth();
   }
 
   else introScreen();
-
-  takeAPicture();
-}
-
-function takeAPicture() {
-  if (isTakingAPicture) {
-    pictureTime++;
-    if (pictureTime >= 60) {
-      drawTilesMap();
-      drawTreesMap();
-      isTakingAPicture = false;
-    }
-  }
-  if (!isTakingAPicture) pictureTime = 0;
-}
-
-function drawGrid() {
-  for (let i = 0; i < 20; i++)
-    for (let j = 0; j < 10; j++) {
-      stroke(0, 20);
-      line(i * 64, 0, i * 64, height);
-      line(0, j * 64, width, j * 64);
-    }
 }
 
 function mousePressed() {
