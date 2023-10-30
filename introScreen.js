@@ -5,4 +5,6 @@ function introScreen() {
     image(imgIntroTitle, 322, 91);
     image(imgNewButton, 476, 433);
     image(imgLoadButton, 656, 433);
+
+    document.querySelector('body').classList.add('intro');
 }

@@ -5,6 +5,8 @@ let isGrassSelected, isAxSelected, isHoeSelected, isSeedSelected;
 let pictureTime = 0;
 
 function gameScreen() {
+    document.querySelector('body').classList.remove('intro');
+
     drawTilesMap();
     drawTreesMap();
     drawTreeGrowth();

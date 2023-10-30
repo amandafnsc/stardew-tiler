@@ -8,6 +8,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: url('./assets/gameBackground.png');
+}
+
+body.intro {
+  background: #FFD789;
 }
 
 canvas {
