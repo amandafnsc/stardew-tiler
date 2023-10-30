@@ -11,8 +11,6 @@ function gameScreen() {
     drawTreesMap();
     drawTreeGrowth();
 
-    takeAPicture();
-
     image(imgBackButton, 16, 16);
     image(imgCameraButton, 1204, 16);
     image(imgInventory, 496, 512);
@@ -21,6 +19,8 @@ function gameScreen() {
     if (isAxSelected == true) image(imgSelected, 576, 528);
     if (isHoeSelected == true) image(imgSelected, 640, 528);
     if (isSeedSelected == true) image(imgSelected, 704, 528);
+
+    takeAPicture();
 }
 
 function drawTreeGrowth() {
