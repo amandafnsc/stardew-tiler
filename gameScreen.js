@@ -1,6 +1,6 @@
-let imgBackButton, imgCameraButton, imgInventory, imgSelected;
+let imgBackButton, imgCameraButton, imgInventory, imgConstruction, imgSelected, imgArrow;
 
-let isGrassSelected, isAxSelected, isHoeSelected, isSeedSelected;
+let isPickaxeSelected, isGrassSelected, isHoeSelected, isSeedSelected, isAxSelected;
 
 let pictureTime = 0;
 
@@ -11,12 +11,13 @@ function gameScreen() {;
 
     image(imgBackButton, 16, 16);
     image(imgCameraButton, 1225.6, 16);
-    image(imgInventory, 544, 576);
+    image(imgInventory, 523, 576);
 
-    if (isGrassSelected == true) image(imgSelected, 554.67, 586.67);
-    if (isAxSelected == true) image(imgSelected, 597.33, 586.67);
-    if (isHoeSelected == true) image(imgSelected, 640, 586.67);
-    if (isSeedSelected == true) image(imgSelected, 682.67, 586.67);
+    if (isPickaxeSelected == true) image(imgSelected, 533.67, 586.67);
+    if (isGrassSelected == true) image(imgSelected, 576.33, 586.67);
+    if (isHoeSelected == true) image(imgSelected, 619, 586.67);
+    if (isSeedSelected == true) image(imgSelected, 661.67, 586.67);
+    if (isAxSelected == true) image(imgSelected, 704.34, 586.67);
 
     takeAPicture();
 }
@@ -45,7 +46,7 @@ function drawTreeGrowth() {
             if (treesMap[j][i] == 4) {
                 treesTime[j][i]++;
                 if (treesTime[j][i] >= 120) {
-                    tilesMap[j][i] = 0;
+                    tilesMap[j][i] = 1;
                     treesMap[j][i]++;
                 }
             }

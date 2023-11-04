@@ -1,6 +1,18 @@
 let gameBackground;
 
-let imgGrass, imgDirt, imgDirtDot, imgDirtMiddle;
+let imgGrass, imgGrassDot, imgGrassMiddle, imgDirt, imgDirtDot, imgDirtMiddle;
+
+let grassOneD = [];
+let grassTwoD = [];
+let grassLD = [];
+let grassCorner = [];
+let grassSide = [];
+let grassTD = [];
+let grassEntrance = [];
+let grassDiagonal = [];
+let grassEdge = [];
+let grassNewWay = [];
+let grassTwoExit = [];
 
 let dirtOneD = [];
 let dirtTwoD = [];
@@ -43,31 +55,48 @@ function drawTilesMap() {
     let hasDirtOnDiagonalDL;
     let hasDirtOnDiagonalDR;
 
-    const hasDirtOnDiagonals =
-        hasDirtOnDiagonalTL ||
-        hasDirtOnDiagonalTR ||
-        hasDirtOnDiagonalDL ||
-        hasDirtOnDiagonalDR;
+    let hasGrassOnTop;
+    let hasGrassOnBottom;
+    let hasGrassOnLeft;
+    let hasGrassOnRight;
 
+    let hasGrassOnDiagonalTL;
+    let hasGrassOnDiagonalTR;
+    let hasGrassOnDiagonalDL;
+    let hasGrassOnDiagonalDR;
 
     for (let i = 0; i < 40; i++)
         for (let j = 0; j < 20; j++) {
 
-            if (j > 0) hasDirtOnTop = tilesMap[j - 1][i] == 1;
-            if (j < 19) hasDirtOnBottom = tilesMap[j + 1][i] == 1;
-            if (i > 0) hasDirtOnLeft = tilesMap[j][i - 1] == 1;
-            if (i < 39) hasDirtOnRight = tilesMap[j][i + 1] == 1;
+            if (j > 0) hasDirtOnTop = tilesMap[j - 1][i] == 2;
+            if (j < 19) hasDirtOnBottom = tilesMap[j + 1][i] == 2;
+            if (i > 0) hasDirtOnLeft = tilesMap[j][i - 1] == 2;
+            if (i < 39) hasDirtOnRight = tilesMap[j][i + 1] == 2;
 
             if (j > 0 && i > 0)
-                hasDirtOnDiagonalTL = tilesMap[j - 1][i - 1] == 1;
+                hasDirtOnDiagonalTL = tilesMap[j - 1][i - 1] == 2;
             if (j > 0 && i < 39)
-                hasDirtOnDiagonalTR = tilesMap[j - 1][i + 1] == 1;
+                hasDirtOnDiagonalTR = tilesMap[j - 1][i + 1] == 2;
             if (j < 19 && i > 0)
-                hasDirtOnDiagonalDL = tilesMap[j + 1][i - 1] == 1;
+                hasDirtOnDiagonalDL = tilesMap[j + 1][i - 1] == 2;
             if (j < 19 && i < 39)
-                hasDirtOnDiagonalDR = tilesMap[j + 1][i + 1] == 1;
+                hasDirtOnDiagonalDR = tilesMap[j + 1][i + 1] == 2;
 
-            if (tilesMap[j][i] == 1) {
+            if (j > 0) hasGrassOnTop = tilesMap[j - 1][i] == 1;
+            if (j < 19) hasGrassOnBottom = tilesMap[j + 1][i] == 1;
+            if (i > 0) hasGrassOnLeft = tilesMap[j][i - 1] == 1;
+            if (i < 39) hasGrassOnRight = tilesMap[j][i + 1] == 1;
+
+            if (j > 0 && i > 0)
+                hasGrassOnDiagonalTL = tilesMap[j - 1][i - 1] == 1;
+            if (j > 0 && i < 39)
+                hasGrassOnDiagonalTR = tilesMap[j - 1][i + 1] == 1;
+            if (j < 19 && i > 0)
+                hasGrassOnDiagonalDL = tilesMap[j + 1][i - 1] == 1;
+            if (j < 19 && i < 39)
+                hasGrassOnDiagonalDR = tilesMap[j + 1][i + 1] == 1;
+
+            if (tilesMap[j][i] == 2) {
                 if (
                     hasDirtOnTop &&
                     hasDirtOnBottom &&
@@ -449,7 +478,386 @@ function drawTilesMap() {
                 else image(imgDirtDot, i * 32, j * 32);
             }
 
-            if (tilesMap[j][i] == 0)
-                image(imgGrass, i * 32, j * 32);
+            if (tilesMap[j][i] == 1) {
+                if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
+                    (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
+                    (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
+                    (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
+                ) image(imgGrass, i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
+                    (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
+                    (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
+                    (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
+                ) image(grassEdge[1], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
+                    (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
+                    (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
+                    (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
+                ) image(grassEdge[2], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
+                    (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
+                    (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
+                    (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
+                ) image(grassEdge[3], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
+                    (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
+                    (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
+                    (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
+                ) image(grassEdge[4], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
+                    (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
+                    (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
+                    (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
+                ) image(grassDiagonal[1], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
+                    (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
+                    (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
+                    (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
+                ) image(grassDiagonal[2], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
+                    (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
+                    (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
+                    (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
+                ) image(grassEntrance[1], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
+                    (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
+                    (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
+                    (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
+                ) image(grassEntrance[2], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
+                    (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
+                    (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
+                    (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
+                ) image(grassEntrance[3], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
+                    (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
+                    (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
+                    (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
+                ) image(grassEntrance[4], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
+                    (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
+                    (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
+                    (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
+                ) image(grassTwoExit[1], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
+                    (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
+                    (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
+                    (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
+                ) image(grassTwoExit[2], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
+                    (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
+                    (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
+                    (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
+                ) image(grassTwoExit[3], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
+                    (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
+                    (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
+                    (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
+                ) image(grassTwoExit[4], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
+                    (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
+                ) image(grassSide[1], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
+                    (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR)
+                ) image(grassSide[2], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
+                    (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL)
+                ) image(grassSide[3], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
+                    (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
+                ) image(grassSide[4], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
+                    (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
+                ) image(grassNewWay[1], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
+                    (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
+                ) image(grassNewWay[2], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
+                    (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR)
+                ) image(grassNewWay[3], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
+                    (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR)
+                ) image(grassNewWay[4], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
+                    (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL)
+                ) image(grassNewWay[5], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
+                    (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL)
+                ) image(grassNewWay[6], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
+                    (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
+                ) image(grassNewWay[7], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
+                    (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
+                ) image(grassNewWay[8], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
+                    (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
+                    (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
+                    (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
+                ) image(imgGrassMiddle, i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
+                ) image(grassCorner[1], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL)
+                ) image(grassCorner[2], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR)
+                ) image(grassCorner[3], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL)
+                ) image(grassCorner[4], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
+                    (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR)
+                ) image(grassTD[1], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
+                    (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
+                ) image(grassTD[2], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
+                    (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
+                ) image(grassTD[3], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
+                    (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL)
+                ) image(grassTD[4], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
+                ) image(grassLD[1], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnBottom || hasDirtOnBottom) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL)
+                ) image(grassLD[2], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnRight || hasDirtOnRight) &&
+                    (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR)
+                ) image(grassLD[3], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL)
+                ) image(grassLD[4], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop) &&
+                    (hasGrassOnBottom || hasDirtOnBottom)
+                ) image(grassTwoD[1], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnLeft || hasDirtOnLeft) &&
+                    (hasGrassOnRight || hasDirtOnRight)
+                ) image(grassTwoD[2], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnBottom || hasDirtOnBottom)
+                ) image(grassOneD[1], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnTop || hasDirtOnTop)
+                ) image(grassOneD[2], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnLeft || hasDirtOnLeft)
+                ) image(grassOneD[3], i * 32, j * 32);
+
+                else if (
+                    (hasGrassOnRight || hasDirtOnRight)
+                ) image(grassOneD[4], i * 32, j * 32);
+
+                else image(imgGrassDot, i * 32, j * 32);
+            }
         }
 }

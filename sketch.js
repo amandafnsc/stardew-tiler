@@ -22,17 +22,31 @@ function preload() {
   imgSelected = loadImage('assets/selected.png');
 
   imgGrass = loadImage('assets/spring/springGrass.png');
+  imgGrassDot = loadImage('assets/spring/springGrassDot.png');
+  imgGrassMiddle = loadImage('assets/spring/springGrassMiddle.png');
+
   imgDirt = loadImage('assets/spring/springDirt.png');
   imgDirtDot = loadImage('assets/spring/springDirtDot.png');
   imgDirtMiddle = loadImage('assets/spring/springDirtMiddle.png');
 
-  dirtTwoD[1] = loadImage('assets/spring/springDirtTwoD' + [1] + '.png');
-  dirtTwoD[2] = loadImage('assets/spring/springDirtTwoD' + [2] + '.png');
+  for (let i = 1; i < 3; i++) {
+    grassTwoD[i] = loadImage('assets/spring/springGrassTwoD' + [i] + '.png');
+    grassDiagonal[i] = loadImage('assets/spring/springGrassDiagonal' + [i] + '.png');
 
-  dirtDiagonal[1] = loadImage('assets/spring/springDirtDiagonal' + [1] + '.png');
-  dirtDiagonal[2] = loadImage('assets/spring/springDirtDiagonal' + [2] + '.png');
+    dirtTwoD[i] = loadImage('assets/spring/springDirtTwoD' + [i] + '.png');
+    dirtDiagonal[i] = loadImage('assets/spring/springDirtDiagonal' + [i] + '.png');
+  }
 
   for (let i = 1; i < 5; i++) {
+    grassOneD[i] = loadImage('assets/spring/springGrassOneD' + [i] + '.png');
+    grassLD[i] = loadImage('assets/spring/springGrassLD' + [i] + '.png');
+    grassCorner[i] = loadImage('assets/spring/springGrassCorner' + [i] + '.png');
+    grassSide[i] = loadImage('assets/spring/springGrassSide' + [i] + '.png');
+    grassTD[i] = loadImage('assets/spring/springGrassTD' + [i] + '.png');
+    grassEntrance[i] = loadImage('assets/spring/springGrassEntrance' + [i] + '.png');
+    grassEdge[i] = loadImage('assets/spring/springGrassEdge' + [i] + '.png');
+    grassTwoExit[i] = loadImage('assets/spring/springGrassTwoExit' + [i] + '.png');
+
     dirtOneD[i] = loadImage('assets/spring/springDirtOneD' + [i] + '.png');
     dirtLD[i] = loadImage('assets/spring/springDirtLD' + [i] + '.png');
     dirtCorner[i] = loadImage('assets/spring/springDirtCorner' + [i] + '.png');
@@ -44,6 +58,8 @@ function preload() {
   }
 
   for (let i = 1; i < 9; i++) {
+    grassNewWay[i] = loadImage('assets/spring/springGrassNewWay' + [i] + '.png');
+
     dirtNewWay[i] = loadImage('assets/spring/springDirtNewWay' + [i] + '.png');
   }
 
@@ -81,43 +97,74 @@ function mousePressed() {
       isTheGameOn = false;
     }
 
-    if (mouseX > 554.67 && mouseX < 597.33 && mouseY > 586.67 && mouseY < 629.34) {
+    if (mouseX > 533.67 && mouseX < 576.33 && mouseY > 586.67 && mouseY < 629.34) {
+      isPickaxeSelected = true;
+      isGrassSelected = false;
+      isHoeSelected = false;
+      isSeedSelected = false;
+      isAxSelected = false;
+    }
+
+    if (mouseX > 576.33 && mouseX < 619 && mouseY > 586.67 && mouseY < 629.34) {
+      isPickaxeSelected = false;
       isGrassSelected = true;
-      isAxSelected = false;
       isHoeSelected = false;
       isSeedSelected = false;
-    }
-
-    if (mouseX > 597.33 && mouseX < 640 && mouseY > 586.67 && mouseY < 629.34) {
-      isGrassSelected = false;
-      isAxSelected = true;
-      isHoeSelected = false;
-      isSeedSelected = false;
-    }
-
-    if (mouseX > 640 && mouseX < 682.67 && mouseY > 586.67 && mouseY < 629.34) {
-      isGrassSelected = false;
       isAxSelected = false;
+    }
+
+    if (mouseX > 619 && mouseX < 661.67 && mouseY > 586.67 && mouseY < 629.34) {
+      isPickaxeSelected = false;
+      isGrassSelected = false;
       isHoeSelected = true;
       isSeedSelected = false;
+      isAxSelected = false;
     }
 
-    if (mouseX > 682.67 && mouseX < 725.34 && mouseY > 586.67 && mouseY < 629.34) {
+    if (mouseX > 661.67 && mouseX < 704.34 && mouseY > 586.67 && mouseY < 629.34) {
+      isPickaxeSelected = false;
       isGrassSelected = false;
-      isAxSelected = false;
       isHoeSelected = false;
       isSeedSelected = true;
+      isAxSelected = false;
+    }
+
+    if (mouseX > 704.34 && mouseX < 747 && mouseY > 586.67 && mouseY < 629.34) {
+      isPickaxeSelected = false;
+      isGrassSelected = false;
+      isHoeSelected = false;
+      isSeedSelected = false;
+      isAxSelected = true;
     }
 
     for (let i = 0; i < 40; i++)
       for (let j = 0; j < 20; j++) {
-        if (floor(x) == i && floor(y) == j && tilesMap[j][i] == 0 && isHoeSelected && treesMap[j][i] == 0)
+        if (
+          floor(x) == i && 
+          floor(y) == j && 
+          tilesMap[j][i] == 1 && 
+          isHoeSelected && 
+          treesMap[j][i] == 0 &&
+          !tilesMap[j - 1][i] == 0 &&
+          !tilesMap[j + 1][i] == 0 &&
+          !tilesMap[j][i - 1] == 0 &&
+          !tilesMap[j][i + 1] == 0 &&
+          !tilesMap[j - 1][i - 1] == 0 &&
+          !tilesMap[j - 1][i + 1] == 0 &&
+          !tilesMap[j + 1][i - 1] == 0 &&
+          !tilesMap[j + 1][i + 1] == 0
+          )
+          tilesMap[j][i] = 2;
+
+        if ((floor(x) == i && floor(y) == j && isGrassSelected && treesMap[j][i] == 0)
+          && (tilesMap[j][i] == 2 || tilesMap[j][i] == 0))
           tilesMap[j][i] = 1;
 
-        if (floor(x) == i && floor(y) == j && tilesMap[j][i] == 1 && isGrassSelected && treesMap[j][i] == 0)
+        if ((floor(x) == i && floor(y) == j && isPickaxeSelected && treesMap[j][i] == 0)
+          && (tilesMap[j][i] == 1 || tilesMap[j][i] == 2))
           tilesMap[j][i] = 0;
 
-        if (floor(x) == i && floor(y) == j && tilesMap[j][i] == 1 && isSeedSelected && treesMap[j][i] == 0)
+        if (floor(x) == i && floor(y) == j && tilesMap[j][i] == 2 && isSeedSelected && treesMap[j][i] == 0)
           treesMap[j][i] = 1;
 
         if (floor(x) == i && floor(y) == j && isAxSelected) {
@@ -145,26 +192,26 @@ function mousePressed() {
 
 function resetTiles() {
   tilesMap = [
-    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-    [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
-    [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
-    [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
-    [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
-    [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
-    [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
-    [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
-    [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
-    [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
-    [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
-    [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
-    [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
-    [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
-    [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
-    [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
-    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0],
+    [0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0],
+    [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+    [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
+    [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+    [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+    [0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+    [0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
+    [0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
+    [0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
+    [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ];
 
   treesMap = [
