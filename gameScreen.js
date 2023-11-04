@@ -10,20 +10,20 @@ function gameScreen() {;
     drawTreeGrowth();
 
     image(imgBackButton, 16, 16);
-    image(imgCameraButton, 1204, 16);
-    image(imgInventory, 496, 512);
+    image(imgCameraButton, 1225.6, 16);
+    image(imgInventory, 544, 576);
 
-    if (isGrassSelected == true) image(imgSelected, 512, 528);
-    if (isAxSelected == true) image(imgSelected, 576, 528);
-    if (isHoeSelected == true) image(imgSelected, 640, 528);
-    if (isSeedSelected == true) image(imgSelected, 704, 528);
+    if (isGrassSelected == true) image(imgSelected, 554.67, 586.67);
+    if (isAxSelected == true) image(imgSelected, 597.33, 586.67);
+    if (isHoeSelected == true) image(imgSelected, 640, 586.67);
+    if (isSeedSelected == true) image(imgSelected, 682.67, 586.67);
 
     takeAPicture();
 }
 
 function drawTreeGrowth() {
-    for (let i = 0; i < 20; i++)
-        for (let j = 0; j < 10; j++) {
+    for (let i = 0; i < 40; i++)
+        for (let j = 0; j < 20; j++) {
             if (treesMap[j][i] == 1) {
                 treesTime[j][i]++;
                 if (treesTime[j][i] >= 30) {
@@ -65,10 +65,10 @@ function takeAPicture() {
 }
 
 function drawGrid() {
-    for (let i = 0; i < 20; i++)
-        for (let j = 0; j < 10; j++) {
+    for (let i = 0; i < 40; i++)
+        for (let j = 0; j < 20; j++) {
             stroke(0, 20);
-            line(i * 64, 0, i * 64, height);
-            line(0, j * 64, width, j * 64);
+            line(i * 32, 0, i * 32, height);
+            line(0, j * 32, width, j * 32);
         }
 }
