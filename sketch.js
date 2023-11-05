@@ -181,16 +181,7 @@ function mousePressed() {
 
           if (tilesMap[j + 1][i + 1] == 2) tilesMap[j + 1][i + 1] = 1;
 
-          if (
-            tilesMap[j - 1][i] == 1 &&
-            tilesMap[j + 1][i] == 1 &&
-            tilesMap[j][i - 1] == 1 &&
-            tilesMap[j][i + 1] == 1 &&
-            tilesMap[j - 1][i - 1] == 1 &&
-            tilesMap[j - 1][i + 1] == 1 &&
-            tilesMap[j + 1][i - 1] == 1 &&
-            tilesMap[j + 1][i + 1] == 1
-          ) tilesMap[j][i] = 0;
+          tilesMap[j][i] = 0;
         }
 
         if (floor(x) == i && floor(y) == j && tilesMap[j][i] == 2 && isSeedSelected && treesMap[j][i] == 0)
