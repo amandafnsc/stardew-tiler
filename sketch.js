@@ -142,10 +142,10 @@ function mousePressed() {
     for (let i = 0; i < 40; i++)
       for (let j = 0; j < 20; j++) {
         if (
-          floor(x) == i && 
-          floor(y) == j && 
-          tilesMap[j][i] == 1 && 
-          isHoeSelected && 
+          floor(x) == i &&
+          floor(y) == j &&
+          tilesMap[j][i] == 1 &&
+          isHoeSelected &&
           treesMap[j][i] == 0 &&
           !tilesMap[j - 1][i] == 0 &&
           !tilesMap[j + 1][i] == 0 &&
@@ -155,7 +155,7 @@ function mousePressed() {
           !tilesMap[j - 1][i + 1] == 0 &&
           !tilesMap[j + 1][i - 1] == 0 &&
           !tilesMap[j + 1][i + 1] == 0
-          )
+        )
           tilesMap[j][i] = 2;
 
         if ((floor(x) == i && floor(y) == j && isGrassSelected && treesMap[j][i] == 0)
@@ -163,8 +163,35 @@ function mousePressed() {
           tilesMap[j][i] = 1;
 
         if ((floor(x) == i && floor(y) == j && isPickaxeSelected && treesMap[j][i] == 0)
-          && (tilesMap[j][i] == 1 || tilesMap[j][i] == 2))
-          tilesMap[j][i] = 0;
+          && (tilesMap[j][i] == 1 || tilesMap[j][i] == 2)) {
+
+          if (tilesMap[j - 1][i] == 2) tilesMap[j - 1][i] = 1;
+
+          if (tilesMap[j + 1][i] == 2) tilesMap[j + 1][i] = 1;
+
+          if (tilesMap[j][i - 1] == 2) tilesMap[j][i - 1] = 1;
+
+          if (tilesMap[j][i + 1] == 2) tilesMap[j][i + 1] = 1;
+
+          if (tilesMap[j - 1][i - 1] == 2)  tilesMap[j - 1][i - 1] = 1;
+
+          if (tilesMap[j - 1][i + 1] == 2) tilesMap[j - 1][i + 1] = 1;
+
+          if (tilesMap[j + 1][i - 1] == 2) tilesMap[j + 1][i - 1] = 1;
+
+          if (tilesMap[j + 1][i + 1] == 2) tilesMap[j + 1][i + 1] = 1;
+
+          if (
+            tilesMap[j - 1][i] == 1 &&
+            tilesMap[j + 1][i] == 1 &&
+            tilesMap[j][i - 1] == 1 &&
+            tilesMap[j][i + 1] == 1 &&
+            tilesMap[j - 1][i - 1] == 1 &&
+            tilesMap[j - 1][i + 1] == 1 &&
+            tilesMap[j + 1][i - 1] == 1 &&
+            tilesMap[j + 1][i + 1] == 1
+          ) tilesMap[j][i] = 0;
+        }
 
         if (floor(x) == i && floor(y) == j && tilesMap[j][i] == 2 && isSeedSelected && treesMap[j][i] == 0)
           treesMap[j][i] = 1;
