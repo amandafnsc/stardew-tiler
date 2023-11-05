@@ -1,6 +1,6 @@
 let imgGameBackground;
 
-let imgBackButton, imgCameraButton, imgInventory, imgConstruction, imgSelected, imgArrow;
+let imgBackButton, imgCameraButton, imgInventory, imgSelected, imgGameFrame;
 
 let isPickaxeSelected, isGrassSelected, isHoeSelected, isSeedSelected, isAxSelected;
 
@@ -16,6 +16,7 @@ function gameScreen() {
     image(imgBackButton, 16, 16);
     image(imgCameraButton, 1225.6, 16);
     image(imgInventory, 523, 576);
+    image(imgGameFrame, 0, 0);
 
     if (isPickaxeSelected == true) image(imgSelected, 533.67, 586.67);
     if (isGrassSelected == true) image(imgSelected, 576.33, 586.67);
