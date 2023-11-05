@@ -1,5 +1,3 @@
-let gameBackground;
-
 let imgGrass, imgGrassDot, imgGrassMiddle, imgDirt, imgDirtDot, imgDirtMiddle;
 
 let grassOneD = [];
@@ -43,8 +41,6 @@ function drawTreesMap() {
 }
 
 function drawTilesMap() {
-    image(imgGameBackground, 0, 0);
-
     let hasDirtOnTop;
     let hasDirtOnBottom;
     let hasDirtOnLeft;

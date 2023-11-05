@@ -1,10 +1,14 @@
+let imgGameBackground;
+
 let imgBackButton, imgCameraButton, imgInventory, imgConstruction, imgSelected, imgArrow;
 
 let isPickaxeSelected, isGrassSelected, isHoeSelected, isSeedSelected, isAxSelected;
 
 let pictureTime = 0;
+let backgroundTime = 0;
 
-function gameScreen() {;
+function gameScreen() {
+    drawAnimatedBackground();
     drawTilesMap();
     drawTreesMap();
     drawTreeGrowth();
@@ -20,6 +24,13 @@ function gameScreen() {;
     if (isAxSelected == true) image(imgSelected, 704.34, 586.67);
 
     takeAPicture();
+}
+
+function drawAnimatedBackground() {
+    backgroundTime++;
+    if (backgroundTime < 60) image(imgGameBackground, 0, 0);
+    if (backgroundTime > 60) image(imgGameBackground, -16, 16);
+    if (backgroundTime >= 120) backgroundTime = 0;
 }
 
 function drawTreeGrowth() {
