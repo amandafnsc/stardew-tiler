@@ -1,42 +1,41 @@
-let imgGrass, imgGrassDot, imgGrassMiddle, imgDirt, imgDirtDot, imgDirtMiddle;
-
-let grassOneD = [];
-let grassTwoD = [];
-let grassLD = [];
-let grassCorner = [];
-let grassSide = [];
-let grassTD = [];
-let grassEntrance = [];
-let grassDiagonal = [];
-let grassEdge = [];
-let grassNewWay = [];
-let grassTwoExit = [];
-
-let dirtOneD = [];
-let dirtTwoD = [];
-let dirtLD = [];
-let dirtCorner = [];
-let dirtSide = [];
-let dirtTD = [];
-let dirtEntrance = [];
-let dirtDiagonal = [];
-let dirtEdge = [];
-let dirtNewWay = [];
-let dirtTwoExit = [];
-
-let islandExit = [];
-
-let tree = [];
-
 function drawTreesMap() {
     for (let i = 0; i < 40; i++)
         for (let j = 0; j < 20; j++) {
-            if (treesMap[j][i] == 1) image(tree[1], i * 32 + 8, j * 32 + 8);
-            if (treesMap[j][i] == 2) image(tree[2], i * 32 + 8, j * 32 + 8);
-            if (treesMap[j][i] == 3) image(tree[3], i * 32 + 8, j * 32 + 8);
-            if (treesMap[j][i] == 4) image(tree[4], i * 32 + 8, j * 32 - 8);
-            if (treesMap[j][i] == 5) image(tree[5], i * 32 - 8, j * 32 - 66);
-            if (treesMap[j][i] == 6) image(tree[6], i * 32 + 8, j * 32 + 4);
+            if (season = summer) {
+                if (treesMap[j][i] == 1) image(tree[1][1], i * 32 + 8, j * 32 + 8);
+                if (treesMap[j][i] == 2) image(tree[1][2], i * 32 + 8, j * 32 + 8);
+                if (treesMap[j][i] == 3) image(tree[1][3], i * 32 + 8, j * 32 + 8);
+                if (treesMap[j][i] == 4) image(tree[1][4], i * 32 + 8, j * 32 - 8);
+                if (treesMap[j][i] == 5) image(tree[1][5], i * 32 - 8, j * 32 - 66);
+                if (treesMap[j][i] == 6) image(tree[1][6], i * 32 + 8, j * 32 + 4);
+            }
+
+            if (season = fall) {
+                if (treesMap[j][i] == 1) image(tree[2][1], i * 32 + 8, j * 32 + 8);
+                if (treesMap[j][i] == 2) image(tree[2][2], i * 32 + 8, j * 32 + 8);
+                if (treesMap[j][i] == 3) image(tree[2][3], i * 32 + 8, j * 32 + 8);
+                if (treesMap[j][i] == 4) image(tree[2][4], i * 32 + 8, j * 32 - 8);
+                if (treesMap[j][i] == 5) image(tree[2][5], i * 32 - 8, j * 32 - 66);
+                if (treesMap[j][i] == 6) image(tree[2][6], i * 32 + 8, j * 32 + 4);
+            }
+
+            if (season = winter) {
+                if (treesMap[j][i] == 1) image(tree[3][1], i * 32 + 8, j * 32 + 8);
+                if (treesMap[j][i] == 2) image(tree[3][2], i * 32 + 8, j * 32 + 8);
+                if (treesMap[j][i] == 3) image(tree[3][3], i * 32 + 8, j * 32 + 8);
+                if (treesMap[j][i] == 4) image(tree[3][4], i * 32 + 8, j * 32 - 8);
+                if (treesMap[j][i] == 5) image(tree[3][5], i * 32 - 8, j * 32 - 66);
+                if (treesMap[j][i] == 6) image(tree[3][6], i * 32 + 8, j * 32 + 4);
+            }
+
+            if (season = spring) {
+                if (treesMap[j][i] == 1) image(tree[4][1], i * 32 + 8, j * 32 + 8);
+                if (treesMap[j][i] == 2) image(tree[4][2], i * 32 + 8, j * 32 + 8);
+                if (treesMap[j][i] == 3) image(tree[4][3], i * 32 + 8, j * 32 + 8);
+                if (treesMap[j][i] == 4) image(tree[4][4], i * 32 + 8, j * 32 - 8);
+                if (treesMap[j][i] == 5) image(tree[4][5], i * 32 - 8, j * 32 - 66);
+                if (treesMap[j][i] == 6) image(tree[4][6], i * 32 + 8, j * 32 + 4);
+            }
         }
 }
 
@@ -102,7 +101,12 @@ function drawTilesMap() {
                     hasDirtOnDiagonalTR &&
                     hasDirtOnDiagonalDL &&
                     hasDirtOnDiagonalDR
-                ) image(imgDirt, i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirt[1], i * 32, j * 32);
+                    if (season = fall) image(dirt[2], i * 32, j * 32);
+                    if (season = winter) image(dirt[3], i * 32, j * 32);
+                    if (season = spring) image(dirt[4], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -113,7 +117,12 @@ function drawTilesMap() {
                     hasDirtOnDiagonalDL &&
                     !hasDirtOnDiagonalTL &&
                     hasDirtOnLeft
-                ) image(dirtEdge[1], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtEdge[1][1], i * 32, j * 32);
+                    if (season = fall) image(dirtEdge[2][1], i * 32, j * 32);
+                    if (season = winter) image(dirtEdge[3][1], i * 32, j * 32);
+                    if (season = spring) image(dirtEdge[4][1], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -124,7 +133,12 @@ function drawTilesMap() {
                     hasDirtOnLeft &&
                     !hasDirtOnDiagonalTR &&
                     hasDirtOnDiagonalTL
-                ) image(dirtEdge[2], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtEdge[1][2], i * 32, j * 32);
+                    if (season = fall) image(dirtEdge[2][2], i * 32, j * 32);
+                    if (season = winter) image(dirtEdge[3][2], i * 32, j * 32);
+                    if (season = spring) image(dirtEdge[4][2], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -135,7 +149,12 @@ function drawTilesMap() {
                     hasDirtOnLeft &&
                     !hasDirtOnDiagonalDL &&
                     hasDirtOnDiagonalTL
-                ) image(dirtEdge[3], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtEdge[1][3], i * 32, j * 32);
+                    if (season = fall) image(dirtEdge[2][3], i * 32, j * 32);
+                    if (season = winter) image(dirtEdge[3][3], i * 32, j * 32);
+                    if (season = spring) image(dirtEdge[4][3], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -146,7 +165,12 @@ function drawTilesMap() {
                     hasDirtOnLeft &&
                     !hasDirtOnDiagonalDR &&
                     hasDirtOnDiagonalTL
-                ) image(dirtEdge[4], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtEdge[1][4], i * 32, j * 32);
+                    if (season = fall) image(dirtEdge[2][4], i * 32, j * 32);
+                    if (season = winter) image(dirtEdge[3][4], i * 32, j * 32);
+                    if (season = spring) image(dirtEdge[4][4], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -157,7 +181,12 @@ function drawTilesMap() {
                     !hasDirtOnDiagonalTL &&
                     !hasDirtOnDiagonalDR &&
                     hasDirtOnLeft
-                ) image(dirtDiagonal[1], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtDiagonal[1][1], i * 32, j * 32);
+                    if (season = fall) image(dirtDiagonal[2][1], i * 32, j * 32);
+                    if (season = winter) image(dirtDiagonal[3][1], i * 32, j * 32);
+                    if (season = spring) image(dirtDiagonal[4][1], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -168,7 +197,12 @@ function drawTilesMap() {
                     !hasDirtOnDiagonalTR &&
                     !hasDirtOnDiagonalDL &&
                     hasDirtOnDiagonalTL
-                ) image(dirtDiagonal[2], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtDiagonal[1][2], i * 32, j * 32);
+                    if (season = fall) image(dirtDiagonal[2][2], i * 32, j * 32);
+                    if (season = winter) image(dirtDiagonal[3][2], i * 32, j * 32);
+                    if (season = spring) image(dirtDiagonal[4][2], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -179,7 +213,12 @@ function drawTilesMap() {
                     !hasDirtOnDiagonalTL &&
                     !hasDirtOnDiagonalTR &&
                     hasDirtOnLeft
-                ) image(dirtEntrance[1], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtEntrance[1][1], i * 32, j * 32);
+                    if (season = fall) image(dirtEntrance[2][1], i * 32, j * 32);
+                    if (season = winter) image(dirtEntrance[3][1], i * 32, j * 32);
+                    if (season = spring) image(dirtEntrance[4][1], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -190,7 +229,12 @@ function drawTilesMap() {
                     !hasDirtOnDiagonalDL &&
                     !hasDirtOnDiagonalDR &&
                     hasDirtOnDiagonalTL
-                ) image(dirtEntrance[2], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtEntrance[1][2], i * 32, j * 32);
+                    if (season = fall) image(dirtEntrance[2][2], i * 32, j * 32);
+                    if (season = winter) image(dirtEntrance[3][2], i * 32, j * 32);
+                    if (season = spring) image(dirtEntrance[4][2], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -201,7 +245,12 @@ function drawTilesMap() {
                     !hasDirtOnDiagonalDR &&
                     !hasDirtOnDiagonalTR &&
                     hasDirtOnDiagonalTL
-                ) image(dirtEntrance[3], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtEntrance[1][3], i * 32, j * 32);
+                    if (season = fall) image(dirtEntrance[2][3], i * 32, j * 32);
+                    if (season = winter) image(dirtEntrance[3][3], i * 32, j * 32);
+                    if (season = spring) image(dirtEntrance[4][3], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -212,7 +261,12 @@ function drawTilesMap() {
                     !hasDirtOnDiagonalDL &&
                     !hasDirtOnDiagonalTL &&
                     hasDirtOnLeft
-                ) image(dirtEntrance[4], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtEntrance[1][4], i * 32, j * 32);
+                    if (season = fall) image(dirtEntrance[2][4], i * 32, j * 32);
+                    if (season = winter) image(dirtEntrance[3][4], i * 32, j * 32);
+                    if (season = spring) image(dirtEntrance[4][4], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -223,7 +277,12 @@ function drawTilesMap() {
                     !hasDirtOnDiagonalDL &&
                     hasDirtOnDiagonalTL &&
                     hasDirtOnLeft
-                ) image(dirtTwoExit[1], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtTwoExit[1][1], i * 32, j * 32);
+                    if (season = fall) image(dirtTwoExit[2][1], i * 32, j * 32);
+                    if (season = winter) image(dirtTwoExit[3][1], i * 32, j * 32);
+                    if (season = spring) image(dirtTwoExit[4][1], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -234,7 +293,12 @@ function drawTilesMap() {
                     !hasDirtOnDiagonalDL &&
                     !hasDirtOnDiagonalTL &&
                     hasDirtOnLeft
-                ) image(dirtTwoExit[2], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtTwoExit[1][2], i * 32, j * 32);
+                    if (season = fall) image(dirtTwoExit[2][2], i * 32, j * 32);
+                    if (season = winter) image(dirtTwoExit[3][2], i * 32, j * 32);
+                    if (season = spring) image(dirtTwoExit[4][2], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -245,7 +309,12 @@ function drawTilesMap() {
                     hasDirtOnDiagonalDL &&
                     !hasDirtOnDiagonalTL &&
                     hasDirtOnLeft
-                ) image(dirtTwoExit[3], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtTwoExit[1][3], i * 32, j * 32);
+                    if (season = fall) image(dirtTwoExit[2][3], i * 32, j * 32);
+                    if (season = winter) image(dirtTwoExit[3][3], i * 32, j * 32);
+                    if (season = spring) image(dirtTwoExit[4][3], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -256,7 +325,12 @@ function drawTilesMap() {
                     !hasDirtOnDiagonalDL &&
                     !hasDirtOnDiagonalTL &&
                     hasDirtOnLeft
-                ) image(dirtTwoExit[4], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtTwoExit[1][4], i * 32, j * 32);
+                    if (season = fall) image(dirtTwoExit[2][4], i * 32, j * 32);
+                    if (season = winter) image(dirtTwoExit[3][4], i * 32, j * 32);
+                    if (season = spring) image(dirtTwoExit[4][4], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnRight &&
@@ -264,7 +338,12 @@ function drawTilesMap() {
                     hasDirtOnBottom &&
                     hasDirtOnDiagonalDL &&
                     hasDirtOnLeft
-                ) image(dirtSide[1], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtSide[1][1], i * 32, j * 32);
+                    if (season = fall) image(dirtSide[2][1], i * 32, j * 32);
+                    if (season = winter) image(dirtSide[3][1], i * 32, j * 32);
+                    if (season = spring) image(dirtSide[4][1], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -272,7 +351,12 @@ function drawTilesMap() {
                     hasDirtOnRight &&
                     hasDirtOnLeft &&
                     hasDirtOnDiagonalTL
-                ) image(dirtSide[2], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtSide[1][2], i * 32, j * 32);
+                    if (season = fall) image(dirtSide[2][2], i * 32, j * 32);
+                    if (season = winter) image(dirtSide[3][2], i * 32, j * 32);
+                    if (season = spring) image(dirtSide[4][2], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -280,7 +364,12 @@ function drawTilesMap() {
                     hasDirtOnDiagonalDL &&
                     hasDirtOnLeft &&
                     hasDirtOnDiagonalTL
-                ) image(dirtSide[3], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtSide[1][3], i * 32, j * 32);
+                    if (season = fall) image(dirtSide[2][3], i * 32, j * 32);
+                    if (season = winter) image(dirtSide[3][3], i * 32, j * 32);
+                    if (season = spring) image(dirtSide[4][3], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -288,7 +377,12 @@ function drawTilesMap() {
                     hasDirtOnRight &&
                     hasDirtOnDiagonalDR &&
                     hasDirtOnBottom
-                ) image(dirtSide[4], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtSide[1][4], i * 32, j * 32);
+                    if (season = fall) image(dirtSide[2][4], i * 32, j * 32);
+                    if (season = winter) image(dirtSide[3][4], i * 32, j * 32);
+                    if (season = spring) image(dirtSide[4][4], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnRight &&
@@ -296,7 +390,12 @@ function drawTilesMap() {
                     !hasDirtOnDiagonalDL &&
                     hasDirtOnDiagonalDR &&
                     hasDirtOnLeft
-                ) image(dirtNewWay[1], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtNewWay[1][1], i * 32, j * 32);
+                    if (season = fall) image(dirtNewWay[2][1], i * 32, j * 32);
+                    if (season = winter) image(dirtNewWay[3][1], i * 32, j * 32);
+                    if (season = spring) image(dirtNewWay[4][1], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnRight &&
@@ -304,7 +403,12 @@ function drawTilesMap() {
                     hasDirtOnDiagonalDL &&
                     !hasDirtOnDiagonalDR &&
                     hasDirtOnLeft
-                ) image(dirtNewWay[2], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtNewWay[1][2], i * 32, j * 32);
+                    if (season = fall) image(dirtNewWay[2][2], i * 32, j * 32);
+                    if (season = winter) image(dirtNewWay[3][2], i * 32, j * 32);
+                    if (season = spring) image(dirtNewWay[4][2], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -312,7 +416,12 @@ function drawTilesMap() {
                     !hasDirtOnDiagonalTL &&
                     hasDirtOnDiagonalTR &&
                     hasDirtOnLeft
-                ) image(dirtNewWay[3], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtNewWay[1][3], i * 32, j * 32);
+                    if (season = fall) image(dirtNewWay[2][3], i * 32, j * 32);
+                    if (season = winter) image(dirtNewWay[3][3], i * 32, j * 32);
+                    if (season = spring) image(dirtNewWay[4][3], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -320,7 +429,12 @@ function drawTilesMap() {
                     hasDirtOnDiagonalTL &&
                     !hasDirtOnDiagonalTR &&
                     hasDirtOnLeft
-                ) image(dirtNewWay[4], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtNewWay[1][4], i * 32, j * 32);
+                    if (season = fall) image(dirtNewWay[2][4], i * 32, j * 32);
+                    if (season = winter) image(dirtNewWay[3][4], i * 32, j * 32);
+                    if (season = spring) image(dirtNewWay[4][4], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -328,7 +442,12 @@ function drawTilesMap() {
                     hasDirtOnDiagonalDL &&
                     !hasDirtOnDiagonalTL &&
                     hasDirtOnLeft
-                ) image(dirtNewWay[5], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtNewWay[1][5], i * 32, j * 32);
+                    if (season = fall) image(dirtNewWay[2][5], i * 32, j * 32);
+                    if (season = winter) image(dirtNewWay[3][5], i * 32, j * 32);
+                    if (season = spring) image(dirtNewWay[4][5], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -336,7 +455,12 @@ function drawTilesMap() {
                     !hasDirtOnDiagonalDL &&
                     hasDirtOnDiagonalTL &&
                     hasDirtOnLeft
-                ) image(dirtNewWay[6], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtNewWay[1][6], i * 32, j * 32);
+                    if (season = fall) image(dirtNewWay[2][6], i * 32, j * 32);
+                    if (season = winter) image(dirtNewWay[3][6], i * 32, j * 32);
+                    if (season = spring) image(dirtNewWay[4][6], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -344,7 +468,12 @@ function drawTilesMap() {
                     hasDirtOnBottom &&
                     hasDirtOnDiagonalDR &&
                     !hasDirtOnDiagonalTR
-                ) image(dirtNewWay[7], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtNewWay[1][7], i * 32, j * 32);
+                    if (season = fall) image(dirtNewWay[2][7], i * 32, j * 32);
+                    if (season = winter) image(dirtNewWay[3][7], i * 32, j * 32);
+                    if (season = spring) image(dirtNewWay[4][7], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -352,7 +481,12 @@ function drawTilesMap() {
                     hasDirtOnBottom &&
                     !hasDirtOnDiagonalDR &&
                     hasDirtOnDiagonalTR
-                ) image(dirtNewWay[8], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtNewWay[1][8], i * 32, j * 32);
+                    if (season = fall) image(dirtNewWay[2][8], i * 32, j * 32);
+                    if (season = winter) image(dirtNewWay[3][8], i * 32, j * 32);
+                    if (season = spring) image(dirtNewWay[4][8], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -363,31 +497,56 @@ function drawTilesMap() {
                     !hasDirtOnDiagonalTL &&
                     !hasDirtOnDiagonalTR &&
                     hasDirtOnLeft
-                ) image(imgDirtMiddle, i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtMiddle[1], i * 32, j * 32);
+                    if (season = fall) image(dirtMiddle[2], i * 32, j * 32);
+                    if (season = winter) image(dirtMiddle[3], i * 32, j * 32);
+                    if (season = spring) image(dirtMiddle[4], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnRight &&
                     hasDirtOnDiagonalDR &&
                     hasDirtOnBottom
-                ) image(dirtCorner[1], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtCorner[1][1], i * 32, j * 32);
+                    if (season = fall) image(dirtCorner[2][1], i * 32, j * 32);
+                    if (season = winter) image(dirtCorner[3][1], i * 32, j * 32);
+                    if (season = spring) image(dirtCorner[4][1], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnBottom &&
                     hasDirtOnDiagonalDL &&
                     hasDirtOnLeft
-                ) image(dirtCorner[2], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtCorner[1][2], i * 32, j * 32);
+                    if (season = fall) image(dirtCorner[2][2], i * 32, j * 32);
+                    if (season = winter) image(dirtCorner[3][2], i * 32, j * 32);
+                    if (season = spring) image(dirtCorner[4][2], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
                     hasDirtOnDiagonalTR &&
                     hasDirtOnRight
-                ) image(dirtCorner[3], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtCorner[1][3], i * 32, j * 32);
+                    if (season = fall) image(dirtCorner[2][3], i * 32, j * 32);
+                    if (season = winter) image(dirtCorner[3][3], i * 32, j * 32);
+                    if (season = spring) image(dirtCorner[4][3], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
                     hasDirtOnLeft &&
                     hasDirtOnDiagonalTL
-                ) image(dirtCorner[4], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtCorner[1][4], i * 32, j * 32);
+                    if (season = fall) image(dirtCorner[2][4], i * 32, j * 32);
+                    if (season = winter) image(dirtCorner[3][4], i * 32, j * 32);
+                    if (season = spring) image(dirtCorner[4][4], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -395,7 +554,12 @@ function drawTilesMap() {
                     !hasDirtOnDiagonalTL &&
                     !hasDirtOnDiagonalTR &&
                     hasDirtOnLeft
-                ) image(dirtTD[1], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtTD[1][1], i * 32, j * 32);
+                    if (season = fall) image(dirtTD[2][1], i * 32, j * 32);
+                    if (season = winter) image(dirtTD[3][1], i * 32, j * 32);
+                    if (season = spring) image(dirtTD[4][1], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnRight &&
@@ -403,7 +567,12 @@ function drawTilesMap() {
                     !hasDirtOnDiagonalDL &&
                     !hasDirtOnDiagonalDR &&
                     hasDirtOnLeft
-                ) image(dirtTD[2], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtTD[1][2], i * 32, j * 32);
+                    if (season = fall) image(dirtTD[2][2], i * 32, j * 32);
+                    if (season = winter) image(dirtTD[3][2], i * 32, j * 32);
+                    if (season = spring) image(dirtTD[4][2], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -411,7 +580,12 @@ function drawTilesMap() {
                     !hasDirtOnDiagonalDR &&
                     !hasDirtOnDiagonalTR &&
                     hasDirtOnBottom
-                ) image(dirtTD[3], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtTD[1][3], i * 32, j * 32);
+                    if (season = fall) image(dirtTD[2][3], i * 32, j * 32);
+                    if (season = winter) image(dirtTD[3][3], i * 32, j * 32);
+                    if (season = spring) image(dirtTD[4][3], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
@@ -419,59 +593,119 @@ function drawTilesMap() {
                     !hasDirtOnDiagonalDL &&
                     !hasDirtOnDiagonalTL &&
                     hasDirtOnLeft
-                ) image(dirtTD[4], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtTD[1][4], i * 32, j * 32);
+                    if (season = fall) image(dirtTD[2][4], i * 32, j * 32);
+                    if (season = winter) image(dirtTD[3][4], i * 32, j * 32);
+                    if (season = spring) image(dirtTD[4][4], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnRight &&
                     !hasDirtOnDiagonalDR &&
                     hasDirtOnBottom
-                ) image(dirtLD[1], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtLD[1][1], i * 32, j * 32);
+                    if (season = fall) image(dirtLD[2][1], i * 32, j * 32);
+                    if (season = winter) image(dirtLD[3][1], i * 32, j * 32);
+                    if (season = spring) image(dirtLD[4][1], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnBottom &&
                     !hasDirtOnDiagonalDL &&
                     hasDirtOnLeft
-                ) image(dirtLD[2], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtLD[1][2], i * 32, j * 32);
+                    if (season = fall) image(dirtLD[2][2], i * 32, j * 32);
+                    if (season = winter) image(dirtLD[3][2], i * 32, j * 32);
+                    if (season = spring) image(dirtLD[4][2], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
                     !hasDirtOnDiagonalTR &&
                     hasDirtOnRight
-                ) image(dirtLD[3], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtLD[1][3], i * 32, j * 32);
+                    if (season = fall) image(dirtLD[2][3], i * 32, j * 32);
+                    if (season = winter) image(dirtLD[3][3], i * 32, j * 32);
+                    if (season = spring) image(dirtLD[4][3], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
                     !hasDirtOnDiagonalTL &&
                     hasDirtOnLeft
-                ) image(dirtLD[4], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtLD[1][4], i * 32, j * 32);
+                    if (season = fall) image(dirtLD[2][4], i * 32, j * 32);
+                    if (season = winter) image(dirtLD[3][4], i * 32, j * 32);
+                    if (season = spring) image(dirtLD[4][4], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop &&
                     hasDirtOnBottom
-                ) image(dirtTwoD[1], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtTwoD[1][1], i * 32, j * 32);
+                    if (season = fall) image(dirtTwoD[2][1], i * 32, j * 32);
+                    if (season = winter) image(dirtTwoD[3][1], i * 32, j * 32);
+                    if (season = spring) image(dirtTwoD[4][1], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnRight &&
                     hasDirtOnLeft
-                ) image(dirtTwoD[2], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtTwoD[1][2], i * 32, j * 32);
+                    if (season = fall) image(dirtTwoD[2][2], i * 32, j * 32);
+                    if (season = winter) image(dirtTwoD[3][2], i * 32, j * 32);
+                    if (season = spring) image(dirtTwoD[4][2], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnBottom
-                ) image(dirtOneD[1], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtOneD[1][1], i * 32, j * 32);
+                    if (season = fall) image(dirtOneD[2][1], i * 32, j * 32);
+                    if (season = winter) image(dirtOneD[3][1], i * 32, j * 32);
+                    if (season = spring) image(dirtOneD[4][1], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnTop
-                ) image(dirtOneD[2], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtOneD[1][2], i * 32, j * 32);
+                    if (season = fall) image(dirtOneD[2][2], i * 32, j * 32);
+                    if (season = winter) image(dirtOneD[3][2], i * 32, j * 32);
+                    if (season = spring) image(dirtOneD[4][2], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnLeft
-                ) image(dirtOneD[3], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtOneD[1][3], i * 32, j * 32);
+                    if (season = fall) image(dirtOneD[2][3], i * 32, j * 32);
+                    if (season = winter) image(dirtOneD[3][3], i * 32, j * 32);
+                    if (season = spring) image(dirtOneD[4][3], i * 32, j * 32);
+                }
 
                 else if (
                     hasDirtOnRight
-                ) image(dirtOneD[4], i * 32, j * 32);
+                ) {
+                    if (season = summer) image(dirtOneD[1][4], i * 32, j * 32);
+                    if (season = fall) image(dirtOneD[2][4], i * 32, j * 32);
+                    if (season = winter) image(dirtOneD[3][4], i * 32, j * 32);
+                    if (season = spring) image(dirtOneD[4][4], i * 32, j * 32);
+                }
 
-                else image(imgDirtDot, i * 32, j * 32);
+                else {
+                    if (season = summer) image(dirtDot[1], i * 32, j * 32);
+                    if (season = fall) image(dirtDot[2], i * 32, j * 32);
+                    if (season = winter) image(dirtDot[3], i * 32, j * 32);
+                    if (season = spring) image(dirtDot[4], i * 32, j * 32);
+                }
             }
 
             if (tilesMap[j][i] == 1) {
@@ -484,7 +718,7 @@ function drawTilesMap() {
                     (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
                     (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
                     (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
-                ) image(imgGrass, i * 32, j * 32);
+                ) image(grass, i * 32, j * 32);
 
                 else if (
                     (hasGrassOnTop || hasDirtOnTop) &&
@@ -745,7 +979,7 @@ function drawTilesMap() {
                     (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
                     (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
                     (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
-                ) image(imgGrassMiddle, i * 32, j * 32);
+                ) image(grassMiddle, i * 32, j * 32);
 
                 else if (
                     (hasGrassOnBottom || hasDirtOnBottom) &&
@@ -853,7 +1087,7 @@ function drawTilesMap() {
                     (hasGrassOnRight || hasDirtOnRight)
                 ) image(grassOneD[4], i * 32, j * 32);
 
-                else image(imgGrassDot, i * 32, j * 32);
+                else image(grassDot, i * 32, j * 32);
             }
         }
 }

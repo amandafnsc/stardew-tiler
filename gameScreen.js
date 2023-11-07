@@ -1,8 +1,12 @@
-let imgGameBackground;
-
-let imgBackButton, imgCameraButton, imgInventory, imgSelected, imgGameFrame;
-
 let isPickaxeSelected, isGrassSelected, isHoeSelected, isSeedSelected, isAxSelected;
+
+let season;
+let summer = 0;
+let fall = 1;
+let winter = 2;
+let spring = 3;
+
+let isGridOn;
 
 let pictureTime = 0;
 let backgroundTime = 0;
@@ -13,10 +17,18 @@ function gameScreen() {
     drawTreesMap();
     drawTreeGrowth();
 
+    if (isGridOn == true) drawGrid();
+
     image(imgBackButton, 16, 16);
     image(imgCameraButton, 1225.6, 16);
     image(imgInventory, 523, 576);
+    image(imgGridButton, 1224, 584);
     image(imgGameFrame, 0, 0);
+    
+    image(imgSummerButton, 1041, 16);
+    image(imgFallButton, 1087, 16);
+    image(imgWinterButton, 1133, 16);
+    image(imgSpringButton, 1179, 16);
 
     if (isPickaxeSelected == true) image(imgSelected, 533.67, 586.67);
     if (isGrassSelected == true) image(imgSelected, 576.33, 586.67);
@@ -80,7 +92,7 @@ function takeAPicture() {
 function drawGrid() {
     for (let i = 0; i < 40; i++)
         for (let j = 0; j < 20; j++) {
-            stroke(0, 20);
+            stroke('#853605');
             line(i * 32, 0, i * 32, height);
             line(0, j * 32, width, j * 32);
         }
