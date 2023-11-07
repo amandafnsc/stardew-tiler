@@ -36,12 +36,8 @@ function mousePressed() {
       saveFrames('my-map', 'png', 1, 1);
     }
 
-    if (mouseX > 1224 && mouseX < 1264 && mouseY > 584 && mouseY < 624 && isGridOn) {
-      isGridOn = false;
-    }
-
-    if (mouseX > 1224 && mouseX < 1264 && mouseY > 584 && mouseY < 624 && !isGridOn) {
-      isGridOn = true;
+    if (mouseX > 1224 && mouseX < 1264 && mouseY > 584 && mouseY < 624) {
+      isGridOn = !isGridOn;
     }
 
     if (mouseX > 16 && mouseX < 85.93 && mouseY > 16 && mouseY < 48) {

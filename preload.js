@@ -13,31 +13,31 @@ let dirt = [];
 let dirtDot = [];
 let dirtMiddle = [];
 
-let grassOneD = [];
-let grassTwoD = [];
-let grassLD = [];
-let grassCorner = [];
-let grassSide = [];
-let grassTD = [];
-let grassEntrance = [];
-let grassDiagonal = [];
-let grassEdge = [];
-let grassNewWay = [];
-let grassTwoExit = [];
+let grassOneD = [[], [], [], [], []];
+let grassTwoD = [[], [], [], [], []];
+let grassLD = [[], [], [], [], []];
+let grassCorner = [[], [], [], [], []];
+let grassSide = [[], [], [], [], []];
+let grassTD = [[], [], [], [], []];
+let grassEntrance = [[], [], [], [], []];
+let grassDiagonal = [[], [], [], [], []];
+let grassEdge = [[], [], [], [], []];
+let grassNewWay = [[], [], [], [], [], [], [], [], []];
+let grassTwoExit = [[], [], [], [], []];
 
-let dirtOneD = [];
-let dirtTwoD = [];
-let dirtLD = [];
-let dirtCorner = [];
-let dirtSide = [];
-let dirtTD = [];
-let dirtEntrance = [];
-let dirtDiagonal = [];
-let dirtEdge = [];
-let dirtNewWay = [];
-let dirtTwoExit = [];
+let dirtOneD = [[], [], [], [], []];
+let dirtTwoD = [[], [], [], [], []];
+let dirtLD = [[], [], [], [], []];
+let dirtCorner = [[], [], [], [], []];
+let dirtSide = [[], [], [], [], []];
+let dirtTD = [[], [], [], [], []];
+let dirtEntrance = [[], [], [], [], []];
+let dirtDiagonal = [[], [], [], [], []];
+let dirtEdge = [[], [], [], [], []];
+let dirtNewWay = [[], [], [], [], [], [], [], [], []];
+let dirtTwoExit = [[], [], [], [], []];
 
-let tree = [];
+let tree = [[], [], [], [], [], [], []];
 
 function preload() {
     imgClouds = loadImage('assets/clouds.png');
