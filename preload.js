@@ -13,31 +13,31 @@ let dirt = [];
 let dirtDot = [];
 let dirtMiddle = [];
 
-let grassOneD = [[], [], [], [], []];
-let grassTwoD = [[], [], [], [], []];
-let grassLD = [[], [], [], [], []];
-let grassCorner = [[], [], [], [], []];
-let grassSide = [[], [], [], [], []];
-let grassTD = [[], [], [], [], []];
-let grassEntrance = [[], [], [], [], []];
-let grassDiagonal = [[], [], [], [], []];
-let grassEdge = [[], [], [], [], []];
-let grassNewWay = [[], [], [], [], [], [], [], [], []];
-let grassTwoExit = [[], [], [], [], []];
+let grassOneD = [[], [], [], []];
+let grassTwoD = [[], [], [], []];
+let grassLD = [[], [], [], []];
+let grassCorner = [[], [], [], []];
+let grassSide = [[], [], [], []];
+let grassTD = [[], [], [], []];
+let grassEntrance = [[], [], [], []];
+let grassDiagonal = [[], [], [], []];
+let grassEdge = [[], [], [], []];
+let grassNewWay = [[], [], [], [], [], [], [], []];
+let grassTwoExit = [[], [], [], []];
 
-let dirtOneD = [[], [], [], [], []];
-let dirtTwoD = [[], [], [], [], []];
-let dirtLD = [[], [], [], [], []];
-let dirtCorner = [[], [], [], [], []];
-let dirtSide = [[], [], [], [], []];
-let dirtTD = [[], [], [], [], []];
-let dirtEntrance = [[], [], [], [], []];
-let dirtDiagonal = [[], [], [], [], []];
-let dirtEdge = [[], [], [], [], []];
-let dirtNewWay = [[], [], [], [], [], [], [], [], []];
-let dirtTwoExit = [[], [], [], [], []];
+let dirtOneD = [[], [], [], []];
+let dirtTwoD = [[], [], [], []];
+let dirtLD = [[], [], [], []];
+let dirtCorner = [[], [], [], []];
+let dirtSide = [[], [], [], []];
+let dirtTD = [[], [], [], []];
+let dirtEntrance = [[], [], [], []];
+let dirtDiagonal = [[], [], [], []];
+let dirtEdge = [[], [], [], []];
+let dirtNewWay = [[], [], [], [], [], [], [], []];
+let dirtTwoExit = [[], [], [], []];
 
-let tree = [[], [], [], [], [], [], []];
+let tree = [[], [], [], [], [], []];
 
 function preload() {
     imgClouds = loadImage('assets/clouds.png');
@@ -59,160 +59,160 @@ function preload() {
     imgWinterButton = loadImage('assets/winterButton.png');
     imgSpringButton = loadImage('assets/springButton.png');
 
-    grass[1] = loadImage('assets/summer/summerGrass.png');
-    grassDot[1] = loadImage('assets/summer/summerGrassDot.png');
-    grassMiddle[1] = loadImage('assets/summer/summerGrassMiddle.png');
+    grass[0] = loadImage('assets/summer/summerGrass.png');
+    grassDot[0] = loadImage('assets/summer/summerGrassDot.png');
+    grassMiddle[0] = loadImage('assets/summer/summerGrassMiddle.png');
 
-    dirt[1] = loadImage('assets/summer/summerDirt.png');
-    dirtDot[1] = loadImage('assets/summer/summerDirtDot.png');
-    dirtMiddle[1] = loadImage('assets/summer/summerDirtMiddle.png');
+    dirt[0] = loadImage('assets/summer/summerDirt.png');
+    dirtDot[0] = loadImage('assets/summer/summerDirtDot.png');
+    dirtMiddle[0] = loadImage('assets/summer/summerDirtMiddle.png');
 
-    grass[2] = loadImage('assets/fall/fallGrass.png');
-    grassDot[2] = loadImage('assets/fall/fallGrassDot.png');
-    grassMiddle[2] = loadImage('assets/fall/fallGrassMiddle.png');
+    grass[1] = loadImage('assets/fall/fallGrass.png');
+    grassDot[1] = loadImage('assets/fall/fallGrassDot.png');
+    grassMiddle[1] = loadImage('assets/fall/fallGrassMiddle.png');
 
-    dirt[2] = loadImage('assets/fall/fallDirt.png');
-    dirtDot[2] = loadImage('assets/fall/fallDirtDot.png');
-    dirtMiddle[2] = loadImage('assets/fall/fallDirtMiddle.png');
+    dirt[1] = loadImage('assets/fall/fallDirt.png');
+    dirtDot[1] = loadImage('assets/fall/fallDirtDot.png');
+    dirtMiddle[1] = loadImage('assets/fall/fallDirtMiddle.png');
 
-    grass[3] = loadImage('assets/winter/winterGrass.png');
-    grassDot[3] = loadImage('assets/winter/winterGrassDot.png');
-    grassMiddle[3] = loadImage('assets/winter/winterGrassMiddle.png');
+    grass[2] = loadImage('assets/winter/winterGrass.png');
+    grassDot[2] = loadImage('assets/winter/winterGrassDot.png');
+    grassMiddle[2] = loadImage('assets/winter/winterGrassMiddle.png');
 
-    dirt[3] = loadImage('assets/winter/winterDirt.png');
-    dirtDot[3] = loadImage('assets/winter/winterDirtDot.png');
-    dirtMiddle[3] = loadImage('assets/winter/winterDirtMiddle.png');
+    dirt[2] = loadImage('assets/winter/winterDirt.png');
+    dirtDot[2] = loadImage('assets/winter/winterDirtDot.png');
+    dirtMiddle[2] = loadImage('assets/winter/winterDirtMiddle.png');
 
-    grass[4] = loadImage('assets/spring/springGrass.png');
-    grassDot[4] = loadImage('assets/spring/springGrassDot.png');
-    grassMiddle[4] = loadImage('assets/spring/springGrassMiddle.png');
+    grass[3] = loadImage('assets/spring/springGrass.png');
+    grassDot[3] = loadImage('assets/spring/springGrassDot.png');
+    grassMiddle[3] = loadImage('assets/spring/springGrassMiddle.png');
 
-    dirt[4] = loadImage('assets/spring/springDirt.png');
-    dirtDot[4] = loadImage('assets/spring/springDirtDot.png');
-    dirtMiddle[4] = loadImage('assets/spring/springDirtMiddle.png');
+    dirt[3] = loadImage('assets/spring/springDirt.png');
+    dirtDot[3] = loadImage('assets/spring/springDirtDot.png');
+    dirtMiddle[3] = loadImage('assets/spring/springDirtMiddle.png');
 
-    for (let i = 1; i < 3; i++) {
-        grassTwoD[1][i] = loadImage('assets/summer/summerGrassTwoD' + [i] + '.png');
-        grassDiagonal[1][i] = loadImage('assets/summer/summerGrassDiagonal' + [i] + '.png');
+    for (let i = 0; i < 2; i++) {
+        grassTwoD[0][i] = loadImage('assets/summer/summerGrassTwoD' + [i + 1] + '.png');
+        grassDiagonal[0][i] = loadImage('assets/summer/summerGrassDiagonal' + [i + 1] + '.png');
 
-        dirtTwoD[1][i] = loadImage('assets/summer/summerDirtTwoD' + [i] + '.png');
-        dirtDiagonal[1][i] = loadImage('assets/summer/summerDirtDiagonal' + [i] + '.png');
+        dirtTwoD[0][i] = loadImage('assets/summer/summerDirtTwoD' + [i + 1] + '.png');
+        dirtDiagonal[0][i] = loadImage('assets/summer/summerDirtDiagonal' + [i + 1] + '.png');
 
-        grassTwoD[2][i] = loadImage('assets/fall/fallGrassTwoD' + [i] + '.png');
-        grassDiagonal[2][i] = loadImage('assets/fall/fallGrassDiagonal' + [i] + '.png');
+        grassTwoD[1][i] = loadImage('assets/fall/fallGrassTwoD' + [i + 1] + '.png');
+        grassDiagonal[1][i] = loadImage('assets/fall/fallGrassDiagonal' + [i + 1] + '.png');
 
-        dirtTwoD[2][i] = loadImage('assets/fall/fallDirtTwoD' + [i] + '.png');
-        dirtDiagonal[2][i] = loadImage('assets/fall/fallDirtDiagonal' + [i] + '.png');
+        dirtTwoD[1][i] = loadImage('assets/fall/fallDirtTwoD' + [i + 1] + '.png');
+        dirtDiagonal[1][i] = loadImage('assets/fall/fallDirtDiagonal' + [i + 1] + '.png');
 
-        grassTwoD[3][i] = loadImage('assets/winter/winterGrassTwoD' + [i] + '.png');
-        grassDiagonal[3][i] = loadImage('assets/winter/winterGrassDiagonal' + [i] + '.png');
+        grassTwoD[2][i] = loadImage('assets/winter/winterGrassTwoD' + [i + 1] + '.png');
+        grassDiagonal[2][i] = loadImage('assets/winter/winterGrassDiagonal' + [i + 1] + '.png');
 
-        dirtTwoD[3][i] = loadImage('assets/winter/winterDirtTwoD' + [i] + '.png');
-        dirtDiagonal[3][i] = loadImage('assets/winter/winterDirtDiagonal' + [i] + '.png');
+        dirtTwoD[2][i] = loadImage('assets/winter/winterDirtTwoD' + [i + 1] + '.png');
+        dirtDiagonal[2][i] = loadImage('assets/winter/winterDirtDiagonal' + [i + 1] + '.png');
 
-        grassTwoD[4][i] = loadImage('assets/spring/springGrassTwoD' + [i] + '.png');
-        grassDiagonal[4][i] = loadImage('assets/spring/springGrassDiagonal' + [i] + '.png');
+        grassTwoD[3][i] = loadImage('assets/spring/springGrassTwoD' + [i + 1] + '.png');
+        grassDiagonal[3][i] = loadImage('assets/spring/springGrassDiagonal' + [i + 1] + '.png');
 
-        dirtTwoD[4][i] = loadImage('assets/spring/springDirtTwoD' + [i] + '.png');
-        dirtDiagonal[4][i] = loadImage('assets/spring/springDirtDiagonal' + [i] + '.png');
+        dirtTwoD[3][i] = loadImage('assets/spring/springDirtTwoD' + [i + 1] + '.png');
+        dirtDiagonal[3][i] = loadImage('assets/spring/springDirtDiagonal' + [i + 1] + '.png');
     }
 
-    for (let i = 1; i < 5; i++) {
-        grassOneD[1][i] = loadImage('assets/summer/summerGrassOneD' + [i] + '.png');
-        grassLD[1][i] = loadImage('assets/summer/summerGrassLD' + [i] + '.png');
-        grassCorner[1][i] = loadImage('assets/summer/summerGrassCorner' + [i] + '.png');
-        grassSide[1][i] = loadImage('assets/summer/summerGrassSide' + [i] + '.png');
-        grassTD[1][i] = loadImage('assets/summer/summerGrassTD' + [i] + '.png');
-        grassEntrance[1][i] = loadImage('assets/summer/summerGrassEntrance' + [i] + '.png');
-        grassEdge[1][i] = loadImage('assets/summer/summerGrassEdge' + [i] + '.png');
-        grassTwoExit[1][i] = loadImage('assets/summer/summerGrassTwoExit' + [i] + '.png');
+    for (let i = 0; i < 4; i++) {
+        grassOneD[0][i] = loadImage('assets/summer/summerGrassOneD' + [i + 1] + '.png');
+        grassLD[0][i] = loadImage('assets/summer/summerGrassLD' + [i + 1] + '.png');
+        grassCorner[0][i] = loadImage('assets/summer/summerGrassCorner' + [i + 1] + '.png');
+        grassSide[0][i] = loadImage('assets/summer/summerGrassSide' + [i + 1] + '.png');
+        grassTD[0][i] = loadImage('assets/summer/summerGrassTD' + [i + 1] + '.png');
+        grassEntrance[0][i] = loadImage('assets/summer/summerGrassEntrance' + [i + 1] + '.png');
+        grassEdge[0][i] = loadImage('assets/summer/summerGrassEdge' + [i + 1] + '.png');
+        grassTwoExit[0][i] = loadImage('assets/summer/summerGrassTwoExit' + [i + 1] + '.png');
 
-        dirtOneD[1][i] = loadImage('assets/summer/summerDirtOneD' + [i] + '.png');
-        dirtLD[1][i] = loadImage('assets/summer/summerDirtLD' + [i] + '.png');
-        dirtCorner[1][i] = loadImage('assets/summer/summerDirtCorner' + [i] + '.png');
-        dirtSide[1][i] = loadImage('assets/summer/summerDirtSide' + [i] + '.png');
-        dirtTD[1][i] = loadImage('assets/summer/summerDirtTD' + [i] + '.png');
-        dirtEntrance[1][i] = loadImage('assets/summer/summerDirtEntrance' + [i] + '.png');
-        dirtEdge[1][i] = loadImage('assets/summer/summerDirtEdge' + [i] + '.png');
-        dirtTwoExit[1][i] = loadImage('assets/summer/summerDirtTwoExit' + [i] + '.png');
+        dirtOneD[0][i] = loadImage('assets/summer/summerDirtOneD' + [i + 1] + '.png');
+        dirtLD[0][i] = loadImage('assets/summer/summerDirtLD' + [i + 1] + '.png');
+        dirtCorner[0][i] = loadImage('assets/summer/summerDirtCorner' + [i + 1] + '.png');
+        dirtSide[0][i] = loadImage('assets/summer/summerDirtSide' + [i + 1] + '.png');
+        dirtTD[0][i] = loadImage('assets/summer/summerDirtTD' + [i + 1] + '.png');
+        dirtEntrance[0][i] = loadImage('assets/summer/summerDirtEntrance' + [i + 1] + '.png');
+        dirtEdge[0][i] = loadImage('assets/summer/summerDirtEdge' + [i + 1] + '.png');
+        dirtTwoExit[0][i] = loadImage('assets/summer/summerDirtTwoExit' + [i + 1] + '.png');
 
-        grassOneD[2][i] = loadImage('assets/fall/fallGrassOneD' + [i] + '.png');
-        grassLD[2][i] = loadImage('assets/fall/fallGrassLD' + [i] + '.png');
-        grassCorner[2][i] = loadImage('assets/fall/fallGrassCorner' + [i] + '.png');
-        grassSide[2][i] = loadImage('assets/fall/fallGrassSide' + [i] + '.png');
-        grassTD[2][i] = loadImage('assets/fall/fallGrassTD' + [i] + '.png');
-        grassEntrance[2][i] = loadImage('assets/fall/fallGrassEntrance' + [i] + '.png');
-        grassEdge[2][i] = loadImage('assets/fall/fallGrassEdge' + [i] + '.png');
-        grassTwoExit[2][i] = loadImage('assets/fall/fallGrassTwoExit' + [i] + '.png');
+        grassOneD[1][i] = loadImage('assets/fall/fallGrassOneD' + [i + 1] + '.png');
+        grassLD[1][i] = loadImage('assets/fall/fallGrassLD' + [i + 1] + '.png');
+        grassCorner[1][i] = loadImage('assets/fall/fallGrassCorner' + [i + 1] + '.png');
+        grassSide[1][i] = loadImage('assets/fall/fallGrassSide' + [i + 1] + '.png');
+        grassTD[1][i] = loadImage('assets/fall/fallGrassTD' + [i + 1] + '.png');
+        grassEntrance[1][i] = loadImage('assets/fall/fallGrassEntrance' + [i + 1] + '.png');
+        grassEdge[1][i] = loadImage('assets/fall/fallGrassEdge' + [i + 1] + '.png');
+        grassTwoExit[1][i] = loadImage('assets/fall/fallGrassTwoExit' + [i + 1] + '.png');
 
-        dirtOneD[2][i] = loadImage('assets/fall/fallDirtOneD' + [i] + '.png');
-        dirtLD[2][i] = loadImage('assets/fall/fallDirtLD' + [i] + '.png');
-        dirtCorner[2][i] = loadImage('assets/fall/fallDirtCorner' + [i] + '.png');
-        dirtSide[2][i] = loadImage('assets/fall/fallDirtSide' + [i] + '.png');
-        dirtTD[2][i] = loadImage('assets/fall/fallDirtTD' + [i] + '.png');
-        dirtEntrance[2][i] = loadImage('assets/fall/fallDirtEntrance' + [i] + '.png');
-        dirtEdge[2][i] = loadImage('assets/fall/fallDirtEdge' + [i] + '.png');
-        dirtTwoExit[2][i] = loadImage('assets/fall/fallDirtTwoExit' + [i] + '.png');
+        dirtOneD[1][i] = loadImage('assets/fall/fallDirtOneD' + [i + 1] + '.png');
+        dirtLD[1][i] = loadImage('assets/fall/fallDirtLD' + [i + 1] + '.png');
+        dirtCorner[1][i] = loadImage('assets/fall/fallDirtCorner' + [i + 1] + '.png');
+        dirtSide[1][i] = loadImage('assets/fall/fallDirtSide' + [i + 1] + '.png');
+        dirtTD[1][i] = loadImage('assets/fall/fallDirtTD' + [i + 1] + '.png');
+        dirtEntrance[1][i] = loadImage('assets/fall/fallDirtEntrance' + [i + 1] + '.png');
+        dirtEdge[1][i] = loadImage('assets/fall/fallDirtEdge' + [i + 1] + '.png');
+        dirtTwoExit[1][i] = loadImage('assets/fall/fallDirtTwoExit' + [i + 1] + '.png');
 
-        grassOneD[3][i] = loadImage('assets/winter/winterGrassOneD' + [i] + '.png');
-        grassLD[3][i] = loadImage('assets/winter/winterGrassLD' + [i] + '.png');
-        grassCorner[3][i] = loadImage('assets/winter/winterGrassCorner' + [i] + '.png');
-        grassSide[3][i] = loadImage('assets/winter/winterGrassSide' + [i] + '.png');
-        grassTD[3][i] = loadImage('assets/winter/winterGrassTD' + [i] + '.png');
-        grassEntrance[3][i] = loadImage('assets/winter/winterGrassEntrance' + [i] + '.png');
-        grassEdge[3][i] = loadImage('assets/winter/winterGrassEdge' + [i] + '.png');
-        grassTwoExit[3][i] = loadImage('assets/winter/winterGrassTwoExit' + [i] + '.png');
+        grassOneD[2][i] = loadImage('assets/winter/winterGrassOneD' + [i + 1] + '.png');
+        grassLD[2][i] = loadImage('assets/winter/winterGrassLD' + [i + 1] + '.png');
+        grassCorner[2][i] = loadImage('assets/winter/winterGrassCorner' + [i + 1] + '.png');
+        grassSide[2][i] = loadImage('assets/winter/winterGrassSide' + [i + 1] + '.png');
+        grassTD[2][i] = loadImage('assets/winter/winterGrassTD' + [i + 1] + '.png');
+        grassEntrance[2][i] = loadImage('assets/winter/winterGrassEntrance' + [i + 1] + '.png');
+        grassEdge[2][i] = loadImage('assets/winter/winterGrassEdge' + [i + 1] + '.png');
+        grassTwoExit[2][i] = loadImage('assets/winter/winterGrassTwoExit' + [i + 1] + '.png');
 
-        dirtOneD[3][i] = loadImage('assets/winter/winterDirtOneD' + [i] + '.png');
-        dirtLD[3][i] = loadImage('assets/winter/winterDirtLD' + [i] + '.png');
-        dirtCorner[3][i] = loadImage('assets/winter/winterDirtCorner' + [i] + '.png');
-        dirtSide[3][i] = loadImage('assets/winter/winterDirtSide' + [i] + '.png');
-        dirtTD[3][i] = loadImage('assets/winter/winterDirtTD' + [i] + '.png');
-        dirtEntrance[3][i] = loadImage('assets/winter/winterDirtEntrance' + [i] + '.png');
-        dirtEdge[3][i] = loadImage('assets/winter/winterDirtEdge' + [i] + '.png');
-        dirtTwoExit[3][i] = loadImage('assets/winter/winterDirtTwoExit' + [i] + '.png');
+        dirtOneD[2][i] = loadImage('assets/winter/winterDirtOneD' + [i + 1] + '.png');
+        dirtLD[2][i] = loadImage('assets/winter/winterDirtLD' + [i + 1] + '.png');
+        dirtCorner[2][i] = loadImage('assets/winter/winterDirtCorner' + [i + 1] + '.png');
+        dirtSide[2][i] = loadImage('assets/winter/winterDirtSide' + [i + 1] + '.png');
+        dirtTD[2][i] = loadImage('assets/winter/winterDirtTD' + [i + 1] + '.png');
+        dirtEntrance[2][i] = loadImage('assets/winter/winterDirtEntrance' + [i + 1] + '.png');
+        dirtEdge[2][i] = loadImage('assets/winter/winterDirtEdge' + [i + 1] + '.png');
+        dirtTwoExit[2][i] = loadImage('assets/winter/winterDirtTwoExit' + [i + 1] + '.png');
 
-        grassOneD[4][i] = loadImage('assets/spring/springGrassOneD' + [i] + '.png');
-        grassLD[4][i] = loadImage('assets/spring/springGrassLD' + [i] + '.png');
-        grassCorner[4][i] = loadImage('assets/spring/springGrassCorner' + [i] + '.png');
-        grassSide[4][i] = loadImage('assets/spring/springGrassSide' + [i] + '.png');
-        grassTD[4][i] = loadImage('assets/spring/springGrassTD' + [i] + '.png');
-        grassEntrance[4][i] = loadImage('assets/spring/springGrassEntrance' + [i] + '.png');
-        grassEdge[4][i] = loadImage('assets/spring/springGrassEdge' + [i] + '.png');
-        grassTwoExit[4][i] = loadImage('assets/spring/springGrassTwoExit' + [i] + '.png');
+        grassOneD[3][i] = loadImage('assets/spring/springGrassOneD' + [i + 1] + '.png');
+        grassLD[3][i] = loadImage('assets/spring/springGrassLD' + [i + 1] + '.png');
+        grassCorner[3][i] = loadImage('assets/spring/springGrassCorner' + [i + 1] + '.png');
+        grassSide[3][i] = loadImage('assets/spring/springGrassSide' + [i + 1] + '.png');
+        grassTD[3][i] = loadImage('assets/spring/springGrassTD' + [i + 1] + '.png');
+        grassEntrance[3][i] = loadImage('assets/spring/springGrassEntrance' + [i + 1] + '.png');
+        grassEdge[3][i] = loadImage('assets/spring/springGrassEdge' + [i + 1] + '.png');
+        grassTwoExit[3][i] = loadImage('assets/spring/springGrassTwoExit' + [i + 1] + '.png');
 
-        dirtOneD[4][i] = loadImage('assets/spring/springDirtOneD' + [i] + '.png');
-        dirtLD[4][i] = loadImage('assets/spring/springDirtLD' + [i] + '.png');
-        dirtCorner[4][i] = loadImage('assets/spring/springDirtCorner' + [i] + '.png');
-        dirtSide[4][i] = loadImage('assets/spring/springDirtSide' + [i] + '.png');
-        dirtTD[4][i] = loadImage('assets/spring/springDirtTD' + [i] + '.png');
-        dirtEntrance[4][i] = loadImage('assets/spring/springDirtEntrance' + [i] + '.png');
-        dirtEdge[4][i] = loadImage('assets/spring/springDirtEdge' + [i] + '.png');
-        dirtTwoExit[4][i] = loadImage('assets/spring/springDirtTwoExit' + [i] + '.png');
+        dirtOneD[3][i] = loadImage('assets/spring/springDirtOneD' + [i + 1] + '.png');
+        dirtLD[3][i] = loadImage('assets/spring/springDirtLD' + [i + 1] + '.png');
+        dirtCorner[3][i] = loadImage('assets/spring/springDirtCorner' + [i + 1] + '.png');
+        dirtSide[3][i] = loadImage('assets/spring/springDirtSide' + [i + 1] + '.png');
+        dirtTD[3][i] = loadImage('assets/spring/springDirtTD' + [i + 1] + '.png');
+        dirtEntrance[3][i] = loadImage('assets/spring/springDirtEntrance' + [i + 1] + '.png');
+        dirtEdge[3][i] = loadImage('assets/spring/springDirtEdge' + [i + 1] + '.png');
+        dirtTwoExit[3][i] = loadImage('assets/spring/springDirtTwoExit' + [i + 1] + '.png');
     }
 
-    for (let i = 1; i < 9; i++) {
-        grassNewWay[1][i] = loadImage('assets/summer/summerGrassNewWay' + [i] + '.png');
+    for (let i = 0; i < 8; i++) {
+        grassNewWay[0][i] = loadImage('assets/summer/summerGrassNewWay' + [i + 1] + '.png');
 
-        dirtNewWay[1][i] = loadImage('assets/summer/summerDirtNewWay' + [i] + '.png');
+        dirtNewWay[0][i] = loadImage('assets/summer/summerDirtNewWay' + [i + 1] + '.png');
 
-        grassNewWay[2][i] = loadImage('assets/fall/fallGrassNewWay' + [i] + '.png');
+        grassNewWay[1][i] = loadImage('assets/fall/fallGrassNewWay' + [i + 1] + '.png');
 
-        dirtNewWay[2][i] = loadImage('assets/fall/fallDirtNewWay' + [i] + '.png');
+        dirtNewWay[1][i] = loadImage('assets/fall/fallDirtNewWay' + [i + 1] + '.png');
 
-        grassNewWay[3][i] = loadImage('assets/winter/winterGrassNewWay' + [i] + '.png');
+        grassNewWay[2][i] = loadImage('assets/winter/winterGrassNewWay' + [i + 1] + '.png');
 
-        dirtNewWay[3][i] = loadImage('assets/winter/winterDirtNewWay' + [i] + '.png');
+        dirtNewWay[2][i] = loadImage('assets/winter/winterDirtNewWay' + [i + 1] + '.png');
 
-        grassNewWay[4][i] = loadImage('assets/spring/springGrassNewWay' + [i] + '.png');
+        grassNewWay[3][i] = loadImage('assets/spring/springGrassNewWay' + [i + 1] + '.png');
 
-        dirtNewWay[4][i] = loadImage('assets/spring/springDirtNewWay' + [i] + '.png');
+        dirtNewWay[3][i] = loadImage('assets/spring/springDirtNewWay' + [i + 1] + '.png');
     }
 
-    for (let i = 1; i < 7; i++) {
-        tree[1][i] = loadImage('assets/summer/summerTree' + [i] + '.png');
-        tree[2][i] = loadImage('assets/fall/fallTree' + [i] + '.png');
-        tree[3][i] = loadImage('assets/winter/winterTree' + [i] + '.png');
-        tree[4][i] = loadImage('assets/spring/springTree' + [i] + '.png');
+    for (let i = 0; i < 6; i++) {
+        tree[0][i] = loadImage('assets/summer/summerTree' + [i + 1] + '.png');
+        tree[1][i] = loadImage('assets/fall/fallTree' + [i + 1] + '.png');
+        tree[2][i] = loadImage('assets/winter/winterTree' + [i + 1] + '.png');
+        tree[3][i] = loadImage('assets/spring/springTree' + [i + 1] + '.png');
     }
 }
