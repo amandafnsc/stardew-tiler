@@ -6,6 +6,8 @@ let imgBackButton, imgCameraButton, imgInventory, imgGridButton, imgSelected, im
 
 let imgSummerButton, imgFallButton, imgWinterButton, imgSpringButton;
 
+let sea = [];
+
 let grass = [];
 let grassDot = [];
 let grassMiddle = [];
@@ -58,6 +60,11 @@ function preload() {
     imgFallButton = loadImage('assets/fallButton.png');
     imgWinterButton = loadImage('assets/winterButton.png');
     imgSpringButton = loadImage('assets/springButton.png');
+
+    sea[0] = loadImage('assets/summer/summerSea.png');
+    sea[1] = loadImage('assets/fall/fallSea.png');
+    sea[2] = loadImage('assets/winter/winterSea.png');
+    sea[3] = loadImage('assets/spring/springSea.png');
 
     grass[0] = loadImage('assets/summer/summerGrass.png');
     grassDot[0] = loadImage('assets/summer/summerGrassDot.png');
@@ -193,19 +200,15 @@ function preload() {
 
     for (let i = 0; i < 8; i++) {
         grassNewWay[0][i] = loadImage('assets/summer/summerGrassNewWay' + [i + 1] + '.png');
-
         dirtNewWay[0][i] = loadImage('assets/summer/summerDirtNewWay' + [i + 1] + '.png');
 
         grassNewWay[1][i] = loadImage('assets/fall/fallGrassNewWay' + [i + 1] + '.png');
-
         dirtNewWay[1][i] = loadImage('assets/fall/fallDirtNewWay' + [i + 1] + '.png');
 
         grassNewWay[2][i] = loadImage('assets/winter/winterGrassNewWay' + [i + 1] + '.png');
-
         dirtNewWay[2][i] = loadImage('assets/winter/winterDirtNewWay' + [i + 1] + '.png');
 
         grassNewWay[3][i] = loadImage('assets/spring/springGrassNewWay' + [i + 1] + '.png');
-
         dirtNewWay[3][i] = loadImage('assets/spring/springDirtNewWay' + [i + 1] + '.png');
     }
 

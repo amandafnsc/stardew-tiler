@@ -9,10 +9,10 @@ let spring = 3;
 let isGridOn;
 
 let pictureTime = 0;
-let backgroundTime = 0;
+let seaTime = 0;
 
 function gameScreen() {
-    drawAnimatedBackground();
+    drawAnimatedSea();
     drawTilesMap();
     drawTreesMap();
     drawTreeGrowth();
@@ -24,7 +24,7 @@ function gameScreen() {
     image(imgInventory, 523, 576);
     image(imgGridButton, 1224, 584);
     image(imgGameFrame, 0, 0);
-    
+
     image(imgSummerButton, 1041, 16);
     image(imgFallButton, 1087, 16);
     image(imgWinterButton, 1133, 16);
@@ -39,11 +39,15 @@ function gameScreen() {
     takeAPicture();
 }
 
-function drawAnimatedBackground() {
-    backgroundTime++;
-    if (backgroundTime < 60) image(imgGameBackground, 0, 0);
-    if (backgroundTime > 60) image(imgGameBackground, -16, 16);
-    if (backgroundTime >= 120) backgroundTime = 0;
+function drawAnimatedSea() {
+    seaTime++;
+    for (let i = 0; i < 21; i++) {
+        for (let j = 0; j < 41; j++) {
+            if (seaTime < 60) image(sea[season], i * 64, j * 16);
+            if (seaTime > 60) image(sea[season], i * 64 - 16, j * 16 - 16);
+            if (seaTime >= 120) seaTime = 0;
+        }
+    }
 }
 
 function drawTreeGrowth() {
@@ -92,7 +96,7 @@ function takeAPicture() {
 function drawGrid() {
     for (let i = 0; i < 40; i++)
         for (let j = 0; j < 20; j++) {
-            stroke('#853605');
+            stroke(133, 54, 5, 20);
             line(i * 32, 0, i * 32, height);
             line(0, j * 32, width, j * 32);
         }
