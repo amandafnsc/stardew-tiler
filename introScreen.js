@@ -1,5 +1,3 @@
-let imgIntroBackground, imgIntroTitle, imgNewButton, imgLoadButton, imgIntroFrame;
-
 function introScreen() {
     background('#708EB5');
     image(imgClouds, 98, 64);
