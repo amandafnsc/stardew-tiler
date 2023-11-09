@@ -44,23 +44,19 @@ function mousePressed() {
       isTheGameOn = false;
     }
 
-    if (mouseX > 1087 && mouseX < 1125.4 && mouseY > 16 && mouseY < 32) {
-      season = fall;
-    }
-
-    if (mouseX > 1041 && mouseX < 1079.4 && mouseY > 16 && mouseY < 32) {
+    if (mouseX > 1041 && mouseX < 1079.4 && mouseY > 16 && mouseY < 48) {
       season = summer;
     }
 
-    if (mouseX > 1087 && mouseX < 1125.4 && mouseY > 16 && mouseY < 32) {
+    if (mouseX > 1087 && mouseX < 1125.4 && mouseY > 16 && mouseY < 48) {
       season = fall;
     }
 
-    if (mouseX > 1133 && mouseX < 1171.4 && mouseY > 16 && mouseY < 32) {
+    if (mouseX > 1133 && mouseX < 1171.4 && mouseY > 16 && mouseY < 48) {
       season = winter;
     }
 
-    if (mouseX > 1179 && mouseX < 1217.4 && mouseY > 16 && mouseY < 32) {
+    if (mouseX > 1179 && mouseX < 1217.4 && mouseY > 16 && mouseY < 48) {
       season = spring;
     }
 
