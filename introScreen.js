@@ -17,7 +17,7 @@ function drawCloudsAnimation() {
     if (isCloudsGoingUP) {
         if (cloudsTime > 30) {
             cloudsY -= 5;
-            if (cloudsY <= 59) isCloudsGoingUP = false;
+            if (cloudsY <= 64) isCloudsGoingUP = false;
             cloudsTime = 0;
         }
     }
@@ -25,7 +25,7 @@ function drawCloudsAnimation() {
     if (!isCloudsGoingUP) {
         if (cloudsTime > 30) {
             cloudsY += 5;
-            if (cloudsY >= 69) isCloudsGoingUP = true;
+            if (cloudsY >= 64) isCloudsGoingUP = true;
             cloudsTime = 0;
         }
     }

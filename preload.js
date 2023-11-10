@@ -1,6 +1,6 @@
 let imgClouds, imgIntroTitle, imgNewButton, imgLoadButton, imgIntroFrame;
 
-let imgGameBackground;
+let imgChooseScreen;
 
 let imgBackButton, imgCameraButton, imgInventory, imgGridButton, imgSelected, imgGameFrame;
 
@@ -48,7 +48,8 @@ function preload() {
     imgLoadButton = loadImage('assets/loadButton.png');
     imgIntroFrame = loadImage('assets/introFrame.png');
 
-    imgGameBackground = loadImage('assets/gameBackground.png');
+    imgChooseScreen = loadImage('assets/chooseScreen.png');
+
     imgBackButton = loadImage('assets/backButton.png');
     imgCameraButton = loadImage('assets/cameraButton.png');
     imgInventory = loadImage('assets/inventory.png');
