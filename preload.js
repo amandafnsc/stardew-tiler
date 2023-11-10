@@ -1,12 +1,11 @@
 let imgClouds, imgIntroTitle, imgNewButton, imgLoadButton, imgIntroFrame;
 
-let imgChooseScreen;
-
 let imgBackButton, imgCameraButton, imgInventory, imgGridButton, imgSelected, imgGameFrame;
 
 let imgSummerButton, imgFallButton, imgWinterButton, imgSpringButton;
 
 let sea = [];
+let map = [];
 
 let grass = [];
 let grassDot = [];
@@ -47,8 +46,6 @@ function preload() {
     imgNewButton = loadImage('assets/newButton.png');
     imgLoadButton = loadImage('assets/loadButton.png');
     imgIntroFrame = loadImage('assets/introFrame.png');
-
-    imgChooseScreen = loadImage('assets/chooseScreen.png');
 
     imgBackButton = loadImage('assets/backButton.png');
     imgCameraButton = loadImage('assets/cameraButton.png');
@@ -126,6 +123,8 @@ function preload() {
     }
 
     for (let i = 0; i < 4; i++) {
+        map[i] = loadImage('assets/map' + [i + 1] + '.png');
+
         grassOneD[0][i] = loadImage('assets/summer/summerGrassOneD' + [i + 1] + '.png');
         grassLD[0][i] = loadImage('assets/summer/summerGrassLD' + [i + 1] + '.png');
         grassCorner[0][i] = loadImage('assets/summer/summerGrassCorner' + [i + 1] + '.png');

@@ -1,5 +1,10 @@
+let whichMap = 0;
+
 function chooseScreen() {
-    image(imgChooseScreen, 0, 0);
+    background('#708EB5');
+    drawCloudsAnimation();
+    image(imgIntroFrame, 0, 0);
+    image(map[whichMap], 349, 114);
 }
 
 function firstMap() {

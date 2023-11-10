@@ -161,24 +161,26 @@ function mousePressed() {
   }
 
   else if (isChoosingMap) {
-    if (mouseX > 279 && mouseX < 615 && mouseY > 124 && mouseY < 300) {
-      firstMap();
+    if (mouseX > 559 && mouseX < 592 && mouseY > 419 && mouseY < 449) {
+      if (whichMap == 0) whichMap = 3;
+      else if (whichMap == 1) whichMap = 0;
+      else if (whichMap == 2) whichMap = 1;
+      else if (whichMap == 3) whichMap = 2;
+    }
+
+    else if (mouseX > 622 && mouseX < 658 && mouseY > 416 && mouseY < 452) {
+      if (whichMap == 0) firstMap();
+      else if (whichMap == 1) secondMap();
+      else if (whichMap == 2) thirdMap();
+      else if (whichMap == 3) fourthMap();
       isTheGameOn = true;
     }
 
-    if (mouseX > 665 && mouseX < 1001 && mouseY > 124 && mouseY < 300) {
-      secondMap();
-      isTheGameOn = true;
-    }
-
-    if (mouseX > 279 && mouseX < 615 && mouseY > 340 && mouseY < 516) {
-      thirdMap();
-      isTheGameOn = true;
-    }
-
-    if (mouseX > 665 && mouseX < 1001 && mouseY > 340 && mouseY < 516) {
-      fourthMap();
-      isTheGameOn = true;
+    else if (mouseX > 688 && mouseX < 721 && mouseY > 419 && mouseY < 449) {
+      if (whichMap == 0) whichMap = 1;
+      else if (whichMap == 1) whichMap = 2;
+      else if (whichMap == 2) whichMap = 3;
+      else if (whichMap == 3) whichMap = 0;
     }
   }
 
