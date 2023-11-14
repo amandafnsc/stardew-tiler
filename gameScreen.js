@@ -85,6 +85,7 @@ function takeAPicture() {
     if (isTakingAPicture) {
         pictureTime++;
         if (pictureTime >= 60) {
+            drawAnimatedSea();
             drawTilesMap();
             drawTreesMap();
             isTakingAPicture = false;
