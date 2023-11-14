@@ -35,8 +35,6 @@ function gameScreen() {
     if (isHoeSelected == true) image(imgSelected, 619, 586.67);
     if (isSeedSelected == true) image(imgSelected, 661.67, 586.67);
     if (isAxSelected == true) image(imgSelected, 704.34, 586.67);
-
-    takeAPicture();
 }
 
 function drawAnimatedSea() {
@@ -79,19 +77,6 @@ function drawTreeGrowth() {
                 }
             }
         }
-}
-
-function takeAPicture() {
-    if (isTakingAPicture) {
-        pictureTime++;
-        if (pictureTime >= 60) {
-            drawAnimatedSea();
-            drawTilesMap();
-            drawTreesMap();
-            isTakingAPicture = false;
-        }
-    }
-    if (!isTakingAPicture) pictureTime = 0;
 }
 
 function drawGrid() {

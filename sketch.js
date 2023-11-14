@@ -1,5 +1,4 @@
 let isTheGameOn = false;
-let isTakingAPicture = false;
 let isChoosingMap = false;
 
 let tilesMap = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []];
@@ -32,8 +31,11 @@ function draw() {
 function mousePressed() {
   if (isTheGameOn) {
     if (mouseX > 1225.6 && mouseX < 1264 && mouseY > 16 && mouseY < 48) {
-      isTakingAPicture = true;
-      saveFrames('my-map', 'png', 1, 1);
+      drawAnimatedSea();
+      drawTilesMap();
+      drawTreesMap();
+      image(imgIntroFrame, 0, 0);
+      saveCanvas('my-map', 'png');
     }
 
     if (mouseX > 1224 && mouseX < 1264 && mouseY > 584 && mouseY < 624) {
