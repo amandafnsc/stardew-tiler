@@ -13,7 +13,6 @@ let t;
 function setup() {
   createCanvas(1280, 640);
   isGridOn = false;
-  season = summer;
 
   resetTiles();
   resetInventorySelected();
@@ -208,8 +207,9 @@ function resetTiles() {
 }
 
 function resetInventorySelected() {
+  isPickaxeSelected = false;
   isGrassSelected = false;
-  isAxSelected = false;
   isHoeSelected = true;
   isSeedSelected = false;
+  isAxSelected = false;
 }

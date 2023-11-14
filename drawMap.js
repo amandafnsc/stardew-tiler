@@ -1,12 +1,14 @@
 function drawTreesMap() {
     for (let i = 0; i < 40; i++)
         for (let j = 0; j < 20; j++) {
-            if (treesMap[j][i] == 1) image(tree[season][0], i * 32 + 8, j * 32 + 8);
-            if (treesMap[j][i] == 2) image(tree[season][1], i * 32 + 8, j * 32 + 8);
-            if (treesMap[j][i] == 3) image(tree[season][2], i * 32 + 8, j * 32 + 8);
-            if (treesMap[j][i] == 4) image(tree[season][3], i * 32 + 8, j * 32 - 8);
-            if (treesMap[j][i] == 5) image(tree[season][4], i * 32 - 8, j * 32 - 66);
-            if (treesMap[j][i] == 6) image(tree[season][5], i * 32 + 8, j * 32 + 4);
+            if (treesMap[j][i] == 5 && season == winter) image(tree[season][4], i * 32 - 6, j * 32 - 66);
+            else if (treesMap[j][i] == 6 && season == winter) image(tree[season][5], i * 32 + 7, j * 32 + 3);
+            else if (treesMap[j][i] == 1) image(tree[season][0], i * 32 + 8, j * 32 + 8);
+            else if (treesMap[j][i] == 2) image(tree[season][1], i * 32 + 8, j * 32 + 8);
+            else if (treesMap[j][i] == 3) image(tree[season][2], i * 32 + 8, j * 32 + 8);
+            else if (treesMap[j][i] == 4) image(tree[season][3], i * 32 + 8, j * 32 - 8);
+            else if (treesMap[j][i] == 5) image(tree[season][4], i * 32 - 8, j * 32 - 66);
+            else if (treesMap[j][i] == 6) image(tree[season][5], i * 32 + 8, j * 32 + 4);
         }
 }
 
