@@ -69,166 +69,120 @@ function drawTilesMap() {
                     hasDirtOnTop &&
                     hasDirtOnBottom &&
                     hasDirtOnLeft &&
-                    hasDirtOnRight &&
-                    hasDirtOnDiagonalTL &&
-                    hasDirtOnDiagonalTR &&
-                    hasDirtOnDiagonalDL &&
-                    hasDirtOnDiagonalDR
-                ) image(dirt[season], i * 32, j * 32);
+                    hasDirtOnRight
+                    ) {
+                        if (
+                            hasDirtOnDiagonalTL &&
+                            hasDirtOnDiagonalTR &&
+                            hasDirtOnDiagonalDL &&
+                            hasDirtOnDiagonalDR
+                        ) image(dirt[season], i * 32, j * 32);
 
-                else if (
-                    hasDirtOnTop &&
-                    hasDirtOnDiagonalTR &&
-                    hasDirtOnRight &&
-                    hasDirtOnDiagonalDR &&
-                    hasDirtOnBottom &&
-                    hasDirtOnDiagonalDL &&
-                    !hasDirtOnDiagonalTL &&
-                    hasDirtOnLeft
-                ) image(dirtEdge[season][0], i * 32, j * 32);
+                        else if(
+                            hasDirtOnDiagonalTR &&
+                            hasDirtOnDiagonalDR &&
+                            hasDirtOnDiagonalDL &&
+                            !hasDirtOnDiagonalTL
+                        ) image(dirtEdge[season][0], i * 32, j * 32);
 
-                else if (
-                    hasDirtOnTop &&
-                    hasDirtOnRight &&
-                    hasDirtOnDiagonalDR &&
-                    hasDirtOnBottom &&
-                    hasDirtOnDiagonalDL &&
-                    hasDirtOnLeft &&
-                    !hasDirtOnDiagonalTR &&
-                    hasDirtOnDiagonalTL
-                ) image(dirtEdge[season][1], i * 32, j * 32);
+                        else if (
+                            hasDirtOnDiagonalDR &&
+                            hasDirtOnDiagonalDL &&
+                            !hasDirtOnDiagonalTR &&
+                            hasDirtOnDiagonalTL
+                        ) image(dirtEdge[season][1], i * 32, j * 32);
 
-                else if (
-                    hasDirtOnTop &&
-                    hasDirtOnDiagonalTR &&
-                    hasDirtOnRight &&
-                    hasDirtOnDiagonalDR &&
-                    hasDirtOnBottom &&
-                    hasDirtOnLeft &&
-                    !hasDirtOnDiagonalDL &&
-                    hasDirtOnDiagonalTL
-                ) image(dirtEdge[season][2], i * 32, j * 32);
+                        else if (
+                            hasDirtOnDiagonalTR &&
+                            hasDirtOnDiagonalDR &&
+                            !hasDirtOnDiagonalDL &&
+                            hasDirtOnDiagonalTL
+                        ) image(dirtEdge[season][2], i * 32, j * 32);
 
-                else if (
-                    hasDirtOnTop &&
-                    hasDirtOnDiagonalTR &&
-                    hasDirtOnRight &&
-                    hasDirtOnBottom &&
-                    hasDirtOnDiagonalDL &&
-                    hasDirtOnLeft &&
-                    !hasDirtOnDiagonalDR &&
-                    hasDirtOnDiagonalTL
-                ) image(dirtEdge[season][3], i * 32, j * 32);
+                        else if (
+                            hasDirtOnDiagonalTR &&
+                            hasDirtOnDiagonalDL &&
+                            !hasDirtOnDiagonalDR &&
+                            hasDirtOnDiagonalTL
+                        ) image(dirtEdge[season][3], i * 32, j * 32);
 
-                else if (
-                    hasDirtOnTop &&
-                    hasDirtOnDiagonalTR &&
-                    hasDirtOnRight &&
-                    hasDirtOnBottom &&
-                    hasDirtOnDiagonalDL &&
-                    !hasDirtOnDiagonalTL &&
-                    !hasDirtOnDiagonalDR &&
-                    hasDirtOnLeft
-                ) image(dirtDiagonal[season][0], i * 32, j * 32);
+                        else if (
+                            hasDirtOnDiagonalTR &&
+                            hasDirtOnDiagonalDL &&
+                            !hasDirtOnDiagonalTL &&
+                            !hasDirtOnDiagonalDR
+                        ) image(dirtDiagonal[season][0], i * 32, j * 32);
 
-                else if (
-                    hasDirtOnTop &&
-                    hasDirtOnRight &&
-                    hasDirtOnDiagonalDR &&
-                    hasDirtOnBottom &&
-                    hasDirtOnLeft &&
-                    !hasDirtOnDiagonalTR &&
-                    !hasDirtOnDiagonalDL &&
-                    hasDirtOnDiagonalTL
-                ) image(dirtDiagonal[season][1], i * 32, j * 32);
+                        else if (
+                            hasDirtOnDiagonalDR &&
+                            !hasDirtOnDiagonalTR &&
+                            !hasDirtOnDiagonalDL &&
+                            hasDirtOnDiagonalTL
+                        ) image(dirtDiagonal[season][1], i * 32, j * 32);
 
-                else if (
-                    hasDirtOnTop &&
-                    hasDirtOnRight &&
-                    hasDirtOnDiagonalDR &&
-                    hasDirtOnBottom &&
-                    hasDirtOnDiagonalDL &&
-                    !hasDirtOnDiagonalTL &&
-                    !hasDirtOnDiagonalTR &&
-                    hasDirtOnLeft
-                ) image(dirtEntrance[season][0], i * 32, j * 32);
+                        else if (
+                            hasDirtOnDiagonalDR &&
+                            hasDirtOnDiagonalDL &&
+                            !hasDirtOnDiagonalTL &&
+                            !hasDirtOnDiagonalTR
+                        ) image(dirtEntrance[season][0], i * 32, j * 32);
 
-                else if (
-                    hasDirtOnTop &&
-                    hasDirtOnDiagonalTR &&
-                    hasDirtOnRight &&
-                    hasDirtOnBottom &&
-                    hasDirtOnLeft &&
-                    !hasDirtOnDiagonalDL &&
-                    !hasDirtOnDiagonalDR &&
-                    hasDirtOnDiagonalTL
-                ) image(dirtEntrance[season][1], i * 32, j * 32);
+                        else if (
+                            hasDirtOnDiagonalTR &&
+                            !hasDirtOnDiagonalDL &&
+                            !hasDirtOnDiagonalDR &&
+                            hasDirtOnDiagonalTL
+                        ) image(dirtEntrance[season][1], i * 32, j * 32);
 
-                else if (
-                    hasDirtOnTop &&
-                    hasDirtOnRight &&
-                    hasDirtOnBottom &&
-                    hasDirtOnDiagonalDL &&
-                    hasDirtOnLeft &&
-                    !hasDirtOnDiagonalDR &&
-                    !hasDirtOnDiagonalTR &&
-                    hasDirtOnDiagonalTL
-                ) image(dirtEntrance[season][2], i * 32, j * 32);
+                        else if (
+                            hasDirtOnDiagonalDL &&
+                            !hasDirtOnDiagonalDR &&
+                            !hasDirtOnDiagonalTR &&
+                            hasDirtOnDiagonalTL
+                        ) image(dirtEntrance[season][2], i * 32, j * 32);
 
-                else if (
-                    hasDirtOnTop &&
-                    hasDirtOnDiagonalTR &&
-                    hasDirtOnRight &&
-                    hasDirtOnDiagonalDR &&
-                    hasDirtOnBottom &&
-                    !hasDirtOnDiagonalDL &&
-                    !hasDirtOnDiagonalTL &&
-                    hasDirtOnLeft
-                ) image(dirtEntrance[season][3], i * 32, j * 32);
+                        else if (
+                            hasDirtOnDiagonalTR &&
+                            hasDirtOnDiagonalDR &&
+                            !hasDirtOnDiagonalDL &&
+                            !hasDirtOnDiagonalTL
+                        ) image(dirtEntrance[season][3], i * 32, j * 32);
+        
+                        else if (
+                            !hasDirtOnDiagonalTR &&
+                            !hasDirtOnDiagonalDR &&
+                            !hasDirtOnDiagonalDL &&
+                            hasDirtOnDiagonalTL
+                        ) image(dirtTwoExit[season][0], i * 32, j * 32);
 
-                else if (
-                    hasDirtOnTop &&
-                    !hasDirtOnDiagonalTR &&
-                    hasDirtOnRight &&
-                    !hasDirtOnDiagonalDR &&
-                    hasDirtOnBottom &&
-                    !hasDirtOnDiagonalDL &&
-                    hasDirtOnDiagonalTL &&
-                    hasDirtOnLeft
-                ) image(dirtTwoExit[season][0], i * 32, j * 32);
+                        else if (
+                            hasDirtOnDiagonalTR &&
+                            !hasDirtOnDiagonalDR &&
+                            !hasDirtOnDiagonalDL &&
+                            !hasDirtOnDiagonalTL
+                        ) image(dirtTwoExit[season][1], i * 32, j * 32);
 
-                else if (
-                    hasDirtOnTop &&
-                    hasDirtOnDiagonalTR &&
-                    hasDirtOnRight &&
-                    !hasDirtOnDiagonalDR &&
-                    hasDirtOnBottom &&
-                    !hasDirtOnDiagonalDL &&
-                    !hasDirtOnDiagonalTL &&
-                    hasDirtOnLeft
-                ) image(dirtTwoExit[season][1], i * 32, j * 32);
+                        else if (
+                            !hasDirtOnDiagonalTR &&
+                            !hasDirtOnDiagonalDR &&
+                            hasDirtOnDiagonalDL &&
+                            !hasDirtOnDiagonalTL
+                        ) image(dirtTwoExit[season][2], i * 32, j * 32);
 
-                else if (
-                    hasDirtOnTop &&
-                    !hasDirtOnDiagonalTR &&
-                    hasDirtOnRight &&
-                    !hasDirtOnDiagonalDR &&
-                    hasDirtOnBottom &&
-                    hasDirtOnDiagonalDL &&
-                    !hasDirtOnDiagonalTL &&
-                    hasDirtOnLeft
-                ) image(dirtTwoExit[season][2], i * 32, j * 32);
+                        else if (
+                            !hasDirtOnDiagonalTR &&
+                            hasDirtOnDiagonalDR &&
+                            !hasDirtOnDiagonalDL &&
+                            !hasDirtOnDiagonalTL
+                        ) image(dirtTwoExit[season][3], i * 32, j * 32);
 
-                else if (
-                    hasDirtOnTop &&
-                    !hasDirtOnDiagonalTR &&
-                    hasDirtOnRight &&
-                    hasDirtOnDiagonalDR &&
-                    hasDirtOnBottom &&
-                    !hasDirtOnDiagonalDL &&
-                    !hasDirtOnDiagonalTL &&
-                    hasDirtOnLeft
-                ) image(dirtTwoExit[season][3], i * 32, j * 32);
+                        else if (
+                            !hasDirtOnDiagonalDL &&
+                            !hasDirtOnDiagonalDR &&
+                            !hasDirtOnDiagonalTL &&
+                            !hasDirtOnDiagonalTR
+                        ) image(dirtMiddle[season], i * 32, j * 32);
+                    }
 
                 else if (
                     hasDirtOnRight &&
@@ -325,17 +279,6 @@ function drawTilesMap() {
                     !hasDirtOnDiagonalDR &&
                     hasDirtOnDiagonalTR
                 ) image(dirtNewWay[season][7], i * 32, j * 32);
-
-                else if (
-                    hasDirtOnTop &&
-                    hasDirtOnRight &&
-                    hasDirtOnBottom &&
-                    !hasDirtOnDiagonalDL &&
-                    !hasDirtOnDiagonalDR &&
-                    !hasDirtOnDiagonalTL &&
-                    !hasDirtOnDiagonalTR &&
-                    hasDirtOnLeft
-                ) image(dirtMiddle[season], i * 32, j * 32);
 
                 else if (
                     hasDirtOnRight &&
@@ -451,167 +394,121 @@ function drawTilesMap() {
                     (hasGrassOnTop || hasDirtOnTop) &&
                     (hasGrassOnBottom || hasDirtOnBottom) &&
                     (hasGrassOnLeft || hasDirtOnLeft) &&
-                    (hasGrassOnRight || hasDirtOnRight) &&
-                    (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
-                    (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
-                    (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
-                    (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
-                ) image(grass[season], i * 32, j * 32);
+                    (hasGrassOnRight || hasDirtOnRight)
+                ) {
+                    if (
+                        (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
+                        (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
+                        (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
+                        (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
+                    ) image(grass[season], i * 32, j * 32);
 
-                else if (
-                    (hasGrassOnTop || hasDirtOnTop) &&
-                    (hasGrassOnBottom || hasDirtOnBottom) &&
-                    (hasGrassOnLeft || hasDirtOnLeft) &&
-                    (hasGrassOnRight || hasDirtOnRight) &&
-                    (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
-                    (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
-                    (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
-                    (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
-                ) image(grassEdge[season][0], i * 32, j * 32);
+                    else if (
+                        (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
+                        (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
+                        (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
+                        (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
+                    ) image(grassEdge[season][0], i * 32, j * 32);
 
-                else if (
-                    (hasGrassOnTop || hasDirtOnTop) &&
-                    (hasGrassOnBottom || hasDirtOnBottom) &&
-                    (hasGrassOnLeft || hasDirtOnLeft) &&
-                    (hasGrassOnRight || hasDirtOnRight) &&
-                    (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
-                    (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
-                    (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
-                    (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
-                ) image(grassEdge[season][1], i * 32, j * 32);
+                    else if (
+                        (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
+                        (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
+                        (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
+                        (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
+                    ) image(grassEdge[season][1], i * 32, j * 32);
 
-                else if (
-                    (hasGrassOnTop || hasDirtOnTop) &&
-                    (hasGrassOnBottom || hasDirtOnBottom) &&
-                    (hasGrassOnLeft || hasDirtOnLeft) &&
-                    (hasGrassOnRight || hasDirtOnRight) &&
-                    (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
-                    (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
-                    (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
-                    (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
-                ) image(grassEdge[season][2], i * 32, j * 32);
+                    else if (
+                        (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
+                        (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
+                        (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
+                        (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
+                    ) image(grassEdge[season][2], i * 32, j * 32);
 
-                else if (
-                    (hasGrassOnTop || hasDirtOnTop) &&
-                    (hasGrassOnBottom || hasDirtOnBottom) &&
-                    (hasGrassOnLeft || hasDirtOnLeft) &&
-                    (hasGrassOnRight || hasDirtOnRight) &&
-                    (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
-                    (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
-                    (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
-                    (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
-                ) image(grassEdge[season][3], i * 32, j * 32);
+                    else if (
+                        (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
+                        (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
+                        (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
+                        (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
+                    ) image(grassEdge[season][3], i * 32, j * 32);
 
-                else if (
-                    (hasGrassOnTop || hasDirtOnTop) &&
-                    (hasGrassOnBottom || hasDirtOnBottom) &&
-                    (hasGrassOnLeft || hasDirtOnLeft) &&
-                    (hasGrassOnRight || hasDirtOnRight) &&
-                    (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
-                    (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
-                    (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
-                    (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
-                ) image(grassDiagonal[season][0], i * 32, j * 32);
+                    else if (
+                        (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
+                        (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
+                        (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
+                        (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
+                    ) image(grassDiagonal[season][0], i * 32, j * 32);
 
-                else if (
-                    (hasGrassOnTop || hasDirtOnTop) &&
-                    (hasGrassOnBottom || hasDirtOnBottom) &&
-                    (hasGrassOnLeft || hasDirtOnLeft) &&
-                    (hasGrassOnRight || hasDirtOnRight) &&
-                    (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
-                    (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
-                    (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
-                    (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
-                ) image(grassDiagonal[season][1], i * 32, j * 32);
+                    else if (
+                        (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
+                        (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
+                        (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
+                        (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
+                    ) image(grassDiagonal[season][1], i * 32, j * 32);
 
-                else if (
-                    (hasGrassOnTop || hasDirtOnTop) &&
-                    (hasGrassOnBottom || hasDirtOnBottom) &&
-                    (hasGrassOnLeft || hasDirtOnLeft) &&
-                    (hasGrassOnRight || hasDirtOnRight) &&
-                    (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
-                    (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
-                    (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
-                    (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
-                ) image(grassEntrance[season][0], i * 32, j * 32);
+                    else if (
+                        (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
+                        (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
+                        (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
+                        (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
+                    ) image(grassEntrance[season][0], i * 32, j * 32);
 
-                else if (
-                    (hasGrassOnTop || hasDirtOnTop) &&
-                    (hasGrassOnBottom || hasDirtOnBottom) &&
-                    (hasGrassOnLeft || hasDirtOnLeft) &&
-                    (hasGrassOnRight || hasDirtOnRight) &&
-                    (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
-                    (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
-                    (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
-                    (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
-                ) image(grassEntrance[season][1], i * 32, j * 32);
+                    else if (
+                        (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
+                        (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
+                        (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
+                        (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
+                    ) image(grassEntrance[season][1], i * 32, j * 32);
 
-                else if (
-                    (hasGrassOnTop || hasDirtOnTop) &&
-                    (hasGrassOnBottom || hasDirtOnBottom) &&
-                    (hasGrassOnLeft || hasDirtOnLeft) &&
-                    (hasGrassOnRight || hasDirtOnRight) &&
-                    (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
-                    (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
-                    (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
-                    (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
-                ) image(grassEntrance[season][2], i * 32, j * 32);
+                    else if (
+                        (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
+                        (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
+                        (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
+                        (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
+                    ) image(grassEntrance[season][2], i * 32, j * 32);
 
-                else if (
-                    (hasGrassOnTop || hasDirtOnTop) &&
-                    (hasGrassOnBottom || hasDirtOnBottom) &&
-                    (hasGrassOnLeft || hasDirtOnLeft) &&
-                    (hasGrassOnRight || hasDirtOnRight) &&
-                    (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
-                    (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
-                    (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
-                    (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
-                ) image(grassEntrance[season][3], i * 32, j * 32);
+                    else if (
+                        (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
+                        (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
+                        (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
+                        (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
+                    ) image(grassEntrance[season][3], i * 32, j * 32);
+    
+                    else if (
+                        (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
+                        (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
+                        (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
+                        (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
+                    ) image(grassTwoExit[season][0], i * 32, j * 32);
 
-                else if (
-                    (hasGrassOnTop || hasDirtOnTop) &&
-                    (hasGrassOnBottom || hasDirtOnBottom) &&
-                    (hasGrassOnLeft || hasDirtOnLeft) &&
-                    (hasGrassOnRight || hasDirtOnRight) &&
-                    (hasGrassOnDiagonalTL || hasDirtOnDiagonalTL) &&
-                    (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
-                    (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
-                    (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
-                ) image(grassTwoExit[season][0], i * 32, j * 32);
+                    else if (
+                        (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
+                        (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
+                        (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
+                        (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
+                    ) image(grassTwoExit[season][1], i * 32, j * 32);
 
-                else if (
-                    (hasGrassOnTop || hasDirtOnTop) &&
-                    (hasGrassOnBottom || hasDirtOnBottom) &&
-                    (hasGrassOnLeft || hasDirtOnLeft) &&
-                    (hasGrassOnRight || hasDirtOnRight) &&
-                    (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
-                    (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
-                    (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
-                    (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
-                ) image(grassTwoExit[season][1], i * 32, j * 32);
+                    else if (
+                        (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
+                        (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
+                        (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
+                        (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
+                    ) image(grassTwoExit[season][2], i * 32, j * 32);
 
-                else if (
-                    (hasGrassOnTop || hasDirtOnTop) &&
-                    (hasGrassOnBottom || hasDirtOnBottom) &&
-                    (hasGrassOnLeft || hasDirtOnLeft) &&
-                    (hasGrassOnRight || hasDirtOnRight) &&
-                    (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
-                    (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
-                    (hasGrassOnDiagonalDL || hasDirtOnDiagonalDL) &&
-                    (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
-                ) image(grassTwoExit[season][2], i * 32, j * 32);
+                    else if (
+                        (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
+                        (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
+                        (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
+                        (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
+                    ) image(grassTwoExit[season][3], i * 32, j * 32);
 
-                else if (
-                    (hasGrassOnTop || hasDirtOnTop) &&
-                    (hasGrassOnBottom || hasDirtOnBottom) &&
-                    (hasGrassOnLeft || hasDirtOnLeft) &&
-                    (hasGrassOnRight || hasDirtOnRight) &&
-                    (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
-                    (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
-                    (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
-                    (hasGrassOnDiagonalDR || hasDirtOnDiagonalDR)
-                ) image(grassTwoExit[season][3], i * 32, j * 32);
-
+                    else if (
+                        (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
+                        (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
+                        (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
+                        (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
+                    ) image(grassMiddle[season], i * 32, j * 32);
+                }
+                
                 else if (
                     (hasGrassOnBottom || hasDirtOnBottom) &&
                     (hasGrassOnLeft || hasDirtOnLeft) &&
@@ -707,17 +604,6 @@ function drawTilesMap() {
                     (hasGrassOnDiagonalTR || hasDirtOnDiagonalTR) &&
                     (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
                 ) image(grassNewWay[season][7], i * 32, j * 32);
-
-                else if (
-                    (hasGrassOnTop || hasDirtOnTop) &&
-                    (hasGrassOnBottom || hasDirtOnBottom) &&
-                    (hasGrassOnLeft || hasDirtOnLeft) &&
-                    (hasGrassOnRight || hasDirtOnRight) &&
-                    (!hasGrassOnDiagonalTL && !hasDirtOnDiagonalTL) &&
-                    (!hasGrassOnDiagonalTR && !hasDirtOnDiagonalTR) &&
-                    (!hasGrassOnDiagonalDL && !hasDirtOnDiagonalDL) &&
-                    (!hasGrassOnDiagonalDR && !hasDirtOnDiagonalDR)
-                ) image(grassMiddle[season], i * 32, j * 32);
 
                 else if (
                     (hasGrassOnBottom || hasDirtOnBottom) &&
