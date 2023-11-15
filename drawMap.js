@@ -13,25 +13,13 @@ function drawTreesMap() {
 }
 
 function drawTilesMap() {
-    let hasDirtOnTop;
-    let hasDirtOnBottom;
-    let hasDirtOnLeft;
-    let hasDirtOnRight;
+    let hasDirtOnTop, hasDirtOnBottom, hasDirtOnLeft, hasDirtOnRight;
 
-    let hasDirtOnDiagonalTL;
-    let hasDirtOnDiagonalTR;
-    let hasDirtOnDiagonalDL;
-    let hasDirtOnDiagonalDR;
+    let hasDirtOnDiagonalTL, hasDirtOnDiagonalTR, hasDirtOnDiagonalDL, hasDirtOnDiagonalDR;
 
-    let hasGrassOnTop;
-    let hasGrassOnBottom;
-    let hasGrassOnLeft;
-    let hasGrassOnRight;
+    let hasGrassOnTop, hasGrassOnBottom, hasGrassOnLeft, hasGrassOnRight;
 
-    let hasGrassOnDiagonalTL;
-    let hasGrassOnDiagonalTR;
-    let hasGrassOnDiagonalDL;
-    let hasGrassOnDiagonalDR;
+    let hasGrassOnDiagonalTL, hasGrassOnDiagonalTR, hasGrassOnDiagonalDL, hasGrassOnDiagonalDR;
 
     for (let i = 0; i < 40; i++)
         for (let j = 0; j < 20; j++) {
