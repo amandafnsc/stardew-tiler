@@ -1,9 +1,9 @@
 let isTheGameOn = false;
 let isChoosingMap = false;
 
-let tilesMap = Array(40).fill([]);
-let treesMap = Array(40).fill([]);
-let treesTime = Array(40).fill([]);
+let tilesMap = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []];
+let treesMap = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []];
+let treesTime = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []];
 
 let x;
 let y;
@@ -122,9 +122,10 @@ function mousePressed() {
         )
           tilesMap[j][i] = 2;
 
-        if ((floor(x) == i && floor(y) == j && isGrassSelected && treesMap[j][i] == 0)
-          && (tilesMap[j][i] == 2 || tilesMap[j][i] == 0))
-          tilesMap[j][i] = 1;
+        if (i > 1 && i < 38 && j > 1 && j < 18)
+          if ((floor(x) == i && floor(y) == j && isGrassSelected && treesMap[j][i] == 0)
+            && (tilesMap[j][i] == 2 || tilesMap[j][i] == 0))
+            tilesMap[j][i] = 1;
 
         if ((floor(x) == i && floor(y) == j && isPickaxeSelected && treesMap[j][i] == 0)
           && (tilesMap[j][i] == 1 || tilesMap[j][i] == 2)) {

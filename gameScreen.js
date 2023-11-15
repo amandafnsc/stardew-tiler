@@ -80,10 +80,10 @@ function drawTreeGrowth() {
 }
 
 function drawGrid() {
-    for (let i = 0; i < 40; i++)
-        for (let j = 0; j < 20; j++) {
+    for (let i = 0; i < 37; i++)
+        for (let j = 0; j < 17; j++) {
             stroke(133, 54, 5, 20);
-            line(i * 32, 0, i * 32, height);
-            line(0, j * 32, width, j * 32);
+            line(i * 32 + 64, 64, i * 32 + 64, height - 64);
+            line(64, j * 32 + 64, width - 64, j * 32 + 64);
         }
 }
