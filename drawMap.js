@@ -172,7 +172,7 @@ function drawTilesMap() {
                     ) image(dirtMiddle[season], i * 32, j * 32);
                 }
 
-                if (
+                else if (
                     hasDirtOnRight &&
                     hasDirtOnDiagonalDR &&
                     hasDirtOnBottom &&
