@@ -8,7 +8,6 @@ let spring = 3;
 
 let isGridOn;
 
-let pictureTime = 0;
 let seaTime = 0;
 
 function gameScreen() {
