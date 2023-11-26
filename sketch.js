@@ -1,5 +1,6 @@
 let isTheGameOn = false;
 let isChoosingMap = false;
+let isTheFirstLoad = true;
 
 let tilesMap = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []];
 let treesMap = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []];
@@ -23,6 +24,7 @@ function draw() {
 
   if (isTheGameOn) {
     gameScreen();
+    isTheFirstLoad = false;
   }
   else if (isChoosingMap) chooseScreen();
   else introScreen();
@@ -195,7 +197,7 @@ function mousePressed() {
       isChoosingMap = true;
     }
 
-    if (mouseX > 680 && mouseX < 791 && mouseY > 411 && mouseY < 498) {
+    if (mouseX > 680 && mouseX < 791 && mouseY > 411 && mouseY < 498 && !isTheFirstLoad) {
       isTheGameOn = true;
     }
   }
